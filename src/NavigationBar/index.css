@@ -1,0 +1,30 @@
+.movie-navbar {
+    background-color: var(--navbar-background-color);
+    height: var(--navbar-height);
+    width: 100%;
+    position: fixed;
+    font-size: 1.2em;
+}
+
+.movie-navbar-spacer {
+    height: var(--navbar-height);
+    width: 100%;
+}
+
+.movie-navbar-links {
+    margin-left: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+
+.movie-navbar-links a {
+    text-decoration: none;
+    color: white;
+    margin-right: 5px;
+    background-color:  #515575;
+    padding: 10px;
+    border-radius: 5px;
+}

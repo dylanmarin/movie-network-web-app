@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {HashRouter} from "react-router-dom";
+import {Routes, Route, Navigate} from "react-router";
+import Home from "./Home";
+import Movies from "./Movies";
+import NavigationBar from "./NavigationBar";
+import "./shared.css"
+import '@popperjs/core/lib/popper.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.js'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <HashRouter>
+            <div>
+                <NavigationBar/>
+                <div>
+                    <Routes>
+                        <Route path="/" element={<Navigate to="/home"/>}/>
+                        <Route path="/home" element={<Home/>}/>
+                        <Route path="/movie/*" element={<Movies/>}/>
+                        <Route path="/movie/:movieId" element={<Movies/>}/>
+                    </Routes>
+                </div>
+            </div>
+
+        </HashRouter>
+
+    );
 }
 
 export default App;
