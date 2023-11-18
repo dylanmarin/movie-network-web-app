@@ -8,24 +8,23 @@ import "./shared.css"
 import '@popperjs/core/lib/popper.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js'
+import MovieDetails from "./Movies/MovieDetails";
 
 function App() {
     return (
         <HashRouter>
             <div>
                 <NavigationBar/>
-                <div>
+                <div >
                     <Routes>
                         <Route path="/" element={<Navigate to="/home"/>}/>
                         <Route path="/home" element={<Home/>}/>
-                        <Route path="/movie/*" element={<Movies/>}/>
-                        <Route path="/movie/:movieId" element={<Movies/>}/>
+                        <Route path="/movies" element={<Movies/>}/>
+                        <Route path="/movie/:movieId" element={<MovieDetails/>}/>
                     </Routes>
                 </div>
             </div>
-
         </HashRouter>
-
     );
 }
 

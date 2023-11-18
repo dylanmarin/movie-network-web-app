@@ -1,0 +1,11 @@
+.movie-poster {
+    width: 100%;
+}
+
+.movie-details {
+    background-color: darkgrey;
+    padding: 5px 10px;
+    margin: 0 auto;
+    width: 950px;
+    height: 100%;
+}
