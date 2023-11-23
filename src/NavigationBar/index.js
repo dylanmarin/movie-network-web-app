@@ -23,7 +23,7 @@ const NavigationBar = () => {
                     <Searchbar/>
                 </nav>
             </div>
-            <div className={"navbar-spacer"}/>
+            {/*<div className={"movie-navbar-spacer"}/>*/}
         </>
     )
 }

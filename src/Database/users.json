@@ -8,20 +8,23 @@
     "following": {
       "2": "kimmn",
       "3": "reyrey"
-    }
+    },
+    "email": "dylan@gmail.com"
   },
   {
     "_id": 2,
     "firstName": "Kimmy",
     "lastName": "Curry",
     "username": "kimmn",
-    "bio": "I like happy movies."
+    "bio": "I like happy movies.",
+    "email": "kimmy@gmail.com"
   },
   {
     "_id": 3,
     "firstName": "Reina",
     "lastName": "Conti",
     "username": "reyrey",
-    "bio": "I like the color green."
+    "bio": "I like the color green.",
+    "email": "reina@gmail.com"
   }
 ]

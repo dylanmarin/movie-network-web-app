@@ -29,3 +29,31 @@
 .star-rating{
     font-size: 1.9em;
 }
+
+.profile-photo {
+    width: 90px;
+}
+
+.username-bold {
+    font-weight: lighter;
+}
+
+.edit-profile-button{
+    border: none;
+    border-radius: 0;
+    padding: 4px 8px;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: fit-content;
+}
+
+.edit-profile-forms input{
+    border-radius: 0;
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+.edit-profile-forms textarea {
+    border-radius: 0;
+    margin-bottom: 10px;
+}

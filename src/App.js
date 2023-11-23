@@ -12,17 +12,19 @@ import MovieDetails from "./Movies/MovieDetails";
 import Users from "./Users";
 import "./index.css"
 import "react-icons"
+import EditUsers from "./Users/Edit";
 
 function App() {
     return (
         <HashRouter>
-            <div>
+            <div className={"h-100"}>
                 <NavigationBar/>
                 <div className={"main-content"}>
                     <Routes>
                         <Route path="/" element={<Navigate to="/home"/>}/>
                         <Route path="/home" element={<Home/>}/>
                         <Route path="/users/:userId" element={<Users/>}/>
+                        <Route path="/users/edit/:userId" element={<EditUsers/>}/>
                         <Route path="/movies" element={<Movies/>}/>
                         <Route path="/movies/:movieId" element={<MovieDetails/>}/>
                     </Routes>
