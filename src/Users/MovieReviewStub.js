@@ -11,7 +11,6 @@ const MovieReviewStub = ({review}) => {
     useEffect(() => {
         const movie = db.movies.find((movie) => movie.id === parseInt(movieId))
         setMovie(movie);
-        console.log(movie)
     }, [movieId]);
 
     const POSTER_URL = "https://image.tmdb.org/t/p/w500";

@@ -19,3 +19,24 @@
     font-size: .9em;
     margin-bottom: 5px;
 }
+
+.movie-recommendation-stub {
+    width: 160px;
+    /*height: 100%;*/
+    margin: 10px;
+    /*background-color: rebeccapurple;*/
+    border-radius: 5px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+    padding: 10px;
+    /*box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);*/
+}
+
+.movie-recommendation-stub-image {
+    width: 140px;
+    /*height: 80%;*/
+    border-radius: 5px;
+    /*background-color: rebeccapurple;*/
+}
