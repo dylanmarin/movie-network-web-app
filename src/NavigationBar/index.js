@@ -16,10 +16,10 @@ const NavigationBar = () => {
                         WebsiteName
                     </h2>
                     <Link to={""} className={"navbar-text movie-navbar-item"}>Home</Link>
-                    <Link to={"movies"} className={"navbar-text movie-navbar-item"}>Movies</Link>
+                    <Link to={"/movies"} className={"navbar-text movie-navbar-item"}>Movies</Link>
                     <Link to={""} className={"navbar-text movie-navbar-item"}>Following</Link>
-                    <Link to={"movie/146015"} className={"navbar-text movie-navbar-item"}>The Double</Link>
-                    <Link to={""} className={"navbar-text movie-navbar-item"}>Profile</Link>
+                    <Link to={"/movies/146015"} className={"navbar-text movie-navbar-item"}>The Double</Link>
+                    <Link to={"/users/1"} className={"navbar-text movie-navbar-item"}>Profile</Link>
                     <Searchbar/>
                 </nav>
             </div>

@@ -3,9 +3,19 @@
 }
 
 .movie-details {
-    background-color: darkgrey;
-    padding: 5px 10px;
-    margin: 0 auto;
-    width: 950px;
-    height: 100%;
+}
+
+.review-heading {
+    font-weight: bold;
+}
+
+.review-heading a {
+    color: var(--hyperlink-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.review-body {
+    font-size: .9em;
+    margin-bottom: 5px;
 }

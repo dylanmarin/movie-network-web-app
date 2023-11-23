@@ -2,10 +2,12 @@ import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import db from "../../Database"
 import "./index.css"
+import MovieDetailsReview from "./MovieDetailsReview";
 
 const MovieDetails = () => {
     const {movieId} = useParams();
     const [movie, setMovie] = useState({});
+    const [reviews, setReviews] = useState([]);
 
     const IMAGE_URL_BASE = "https://image.tmdb.org/t/p/";
     const IMAGE_SIZE = "w500";
@@ -13,9 +15,12 @@ const MovieDetails = () => {
     useEffect(() => {
         const movie = db.movies.find((movie) => movie.id === parseInt(movieId))
         setMovie(movie);
-    }, []);
 
-    const {id, title, overview, poster_path, release_date} = movie;
+        const reviews = db.reviews.filter((review) => review.movieId === parseInt(movieId))
+        setReviews(reviews);
+    }, [movieId]);
+
+    const {title, overview, poster_path, release_date} = movie;
 
     return (
         <div className={"movie-details"}>
@@ -36,10 +41,11 @@ const MovieDetails = () => {
                 <div className={"col-4"}>
                     <h2>Following:</h2>
                     Users who you follow that have watched this movie:
-                    <ul>
-                        <li>Username: Rating</li>
-                        <li>Username: Rating</li>
-                    </ul>
+                    <div className={"list-group"}>
+                        {reviews.map((review) =>
+                            <MovieDetailsReview review={review}/>
+                        )}
+                    </div>
                 </div>
             </div>
 

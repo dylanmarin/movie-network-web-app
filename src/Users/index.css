@@ -1,0 +1,31 @@
+.reviewed-movies {
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.movie-stub {
+    width: 200px;
+    height: 100%;
+    margin: 10px;
+    /*background-color: rebeccapurple;*/
+    border-radius: 5px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+    padding: 10px;
+    /*box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);*/
+}
+
+.movie-stub-image {
+    width: 180px;
+    /*height: 80%;*/
+    border-radius: 5px;
+    /*background-color: rebeccapurple;*/
+}
+
+.star-rating{
+    font-size: 1.9em;
+}

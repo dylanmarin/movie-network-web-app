@@ -1,0 +1,27 @@
+[
+  {
+    "_id": 1,
+    "firstName": "Dylan",
+    "lastName": "Marin",
+    "username": "melonmizu",
+    "bio": "I like dark movies.",
+    "following": {
+      "2": "kimmn",
+      "3": "reyrey"
+    }
+  },
+  {
+    "_id": 2,
+    "firstName": "Kimmy",
+    "lastName": "Curry",
+    "username": "kimmn",
+    "bio": "I like happy movies."
+  },
+  {
+    "_id": 3,
+    "firstName": "Reina",
+    "lastName": "Conti",
+    "username": "reyrey",
+    "bio": "I like the color green."
+  }
+]
