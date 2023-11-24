@@ -8,7 +8,7 @@ const MovieRecommendationStub = ({movie}) => {
 
     return (
         <Link to={`/movies/${movie.id}`}>
-            <div className={"movie-recommendation-stub text-center"}>
+            <div className={"movie-recommendation-stub text-center pb-0 mb-0"}>
                 <img src={`${POSTER_URL}/${poster_path}`} alt={"poster"} className={"movie-recommendation-stub-image"}/>
                 <h6>{title}</h6>
             </div>

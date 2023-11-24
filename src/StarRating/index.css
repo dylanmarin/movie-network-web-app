@@ -1,0 +1,11 @@
+.star-icon {
+  font-size: .8em;
+}
+
+.star-filled {
+  color: var(--star-filled-color);
+}
+
+.star-unfilled {
+  color: var(--star-unfilled-color);
+}

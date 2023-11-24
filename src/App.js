@@ -2,7 +2,6 @@ import React from 'react';
 import {HashRouter} from "react-router-dom";
 import {Routes, Route, Navigate} from "react-router";
 import Home from "./Home";
-import Movies from "./Movies";
 import NavigationBar from "./NavigationBar";
 import "./shared.css"
 import '@popperjs/core/lib/popper.js';
@@ -25,7 +24,6 @@ function App() {
                         <Route path="/home" element={<Home/>}/>
                         <Route path="/users/:userId" element={<Users/>}/>
                         <Route path="/users/edit/:userId" element={<EditUsers/>}/>
-                        <Route path="/movies" element={<Movies/>}/>
                         <Route path="/movies/:movieId" element={<MovieDetails/>}/>
                     </Routes>
                 </div>

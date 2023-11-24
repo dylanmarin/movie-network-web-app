@@ -20,15 +20,12 @@ const SimilarFilms = () => {
 
         fetchRecommendations(movieId);
 
-        var e = document.getElementById("movie-scroll");
-        e.scrollTop = 0;
-
     }, [movieId]);
 
     return (
-        <>
-            <h3>Similar Films:</h3>
-            <div id={"movie-scroll"} className={"d-flex flex-row overflow-x-auto"}>
+        <div className={"recommendations-slider-container"}>
+            <h3 className={"m-0"}>Similar Films:</h3>
+            <div className={"d-flex flex-row overflow-x-auto"}>
 
                 {
                     recommendations.filter((movie) => movie.poster_path !== null).map((recommendation) => {
@@ -38,7 +35,7 @@ const SimilarFilms = () => {
                     })
                 }
             </div>
-        </>
+        </div>
     )
 }
 
