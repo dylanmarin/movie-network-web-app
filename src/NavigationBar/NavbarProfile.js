@@ -7,7 +7,10 @@ const NavbarProfile = () => {
     return (
         <>
             <Link to={"/users/1"} className={"navbar-text movie-navbar-item"}>
-                Profile
+
+                <div className={"profile-text"}>
+                    Profile
+                </div>
                 <FaUserCircle className={"navbar-text movie-navbar-item profile-icon"}/>
             </Link>
         </>

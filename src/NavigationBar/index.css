@@ -1,6 +1,6 @@
 .movie-navbar {
     background-color: var(--navbar-background-color);
-    /*height: var(--navbar-height);*/
+    height: var(--navbar-height);
     width: 100%;
     font-size: 1.2em;
     padding: 0 60px;
@@ -8,7 +8,13 @@
 
 .movie-navbar a {
     text-decoration: none;
+}
 
+.movie-navbar a:hover {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    padding: 5px;
+    text-decoration: none;
 }
 
 .searchbar {
@@ -20,7 +26,7 @@
 
 .searchbar input {
     width: 210px;
-    border-radius: 150px;
+    border-radius: 150px 0 0 150px;
 }
 
 .movie-navbar-spacer {
@@ -45,14 +51,28 @@
     /*border-radius: 5px;*/
 }
 
-.movie-navbar-item.btn {
-    border-radius: 150px;
+.searchbar button {
+    border-radius: 0 150px 150px 0;
 }
 
 .profile-icon {
     padding: 0 !important;
     margin: auto 0 !important;
     margin-left: 5px !important;
-    font-size: 2em;
+    font-size: 1.4em;
+}
 
+.profile-text {
+    margin: 0 auto !important;
+    margin-left: 5px !important;
+    display: inline;
+
+}
+
+
+.navbar-brand {
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    padding: 16px 8px;
 }

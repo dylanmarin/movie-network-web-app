@@ -25,13 +25,11 @@ const NavigationBar = () => {
                     </h2>
 
                     <div className={"col float-end d-flex flex-row-reverse"}>
-                        {/*<Link to={"/movies/146015"} className={"navbar-text movie-navbar-item"}>The Double</Link>*/}
                         <NavbarProfile/>
                         <Searchbar/>
                     </div>
                 </nav>
             </div>
-            {/*<div className={"movie-navbar-spacer"}/>*/}
         </>
     )
 }

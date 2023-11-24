@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import db from "../../Database"
 import * as client from "../../client";
-import MovieRecommendationStub from "./MovieRecommendationStub";
+import MovieStubSimple from "../../Shared/MovieStubSimple";
 
 const SimilarFilms = () => {
     const {movieId} = useParams();
@@ -30,7 +30,7 @@ const SimilarFilms = () => {
                 {
                     recommendations.filter((movie) => movie.poster_path !== null).map((recommendation) => {
                         return (
-                            <MovieRecommendationStub movie={recommendation} key={recommendation.id}/>
+                            <MovieStubSimple movie={recommendation} key={recommendation.id}/>
                         )
                     })
                 }
