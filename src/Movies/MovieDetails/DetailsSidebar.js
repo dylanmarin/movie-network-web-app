@@ -5,11 +5,13 @@ import {useParams} from "react-router";
 import db from "../../Database";
 import "./index.css";
 
-const DetailsSidebar = () => {
+const DetailsSidebar = ({movie, edit = false, newReview = false, handleSave = null, handleCancel = null}) => {
     const [signedIn, setSignedIn] = useState(true);
     const navigate = useNavigate();
-    const {movieId} = useParams();
     const [reviews, setReviews] = useState([]);
+    const [allowedToEdit, setAllowedToEdit] = useState(false);
+    const {reviewId} = useParams();
+    const movieId = movie.id;
 
     useEffect(() => {
         // get signedIn
@@ -17,7 +19,14 @@ const DetailsSidebar = () => {
         // fetch reviews by people you follow
         const reviews = db.reviews.filter((review) => review.movieId === parseInt(movieId));
         setReviews(reviews);
-    }, []);
+
+        // check if this is being displayed on a review page
+        // if so, check if the current user is the author of the review
+        // if so, allow them to edit it
+        if (reviewId) {
+            setAllowedToEdit(true);
+        }
+    }, [movie]);
 
     const handleReviewButton = () => {
         if (signedIn) {
@@ -27,14 +36,44 @@ const DetailsSidebar = () => {
         }
     }
 
+    const handleEditButton = () => {
+        navigate(`/reviews/${reviewId}/edit`)
+    }
+
     return (
         <div className={'details-sidebar'}>
-            <button
-                onClick={handleReviewButton}
-                className={"btn btn-secondary review-button"}>
-                {signedIn && "Add a Review"}
-                {!signedIn && "Sign in to leave a Review!"}
-            </button>
+            {
+                !newReview &&
+                <button
+                    onClick={handleReviewButton}
+                    className={"btn btn-secondary sidebar-button"}>
+                    {signedIn && "Add a Review"}
+                    {!signedIn && "Sign in to leave a Review!"}
+                </button>
+            }
+
+            {allowedToEdit && !edit &&
+                <button
+                    onClick={handleEditButton}
+                    className={"btn btn-secondary sidebar-button"}>
+                    Edit Review
+                </button>
+            }
+
+            {(edit || newReview) &&
+                <>
+                    <button
+                        onClick={handleSave}
+                        className={"btn btn-secondary sidebar-button"}>
+                        Save
+                    </button>
+                    <button
+                        onClick={handleCancel}
+                        className={"btn btn-secondary sidebar-button"}>
+                        Cancel
+                    </button>
+                </>
+            }
 
 
             <div className={"following-reviews-list"}>

@@ -7,10 +7,12 @@ import db from "../Database";
 import {Link, useNavigate} from "react-router-dom";
 import StarRating from "../StarRating";
 
-const Reviews = ({edit}) => {
-    const {reviewId} = useParams();
-    const [review, setReview] = useState({});
-    const [editedReview, setEditedReview] = useState({});
+const NewReview = () => {
+    const {movieId} = useParams();
+    const [review, setReview] = useState({
+        rating: 3,
+        reviewText: ""
+    });
     const [movie, setMovie] = useState({});
     const [user, setUser] = useState({});
     const navigate = useNavigate();
@@ -24,29 +26,22 @@ const Reviews = ({edit}) => {
 
     const handleSave = () => {
         // save review changes
-        setEditedReview(review)
-        navigate(`/reviews/${reviewId}`)
+        // save to db
+        // get new id
+        // navigate(`/reviews/${reviewId}`)
     }
 
     const handleCancel = () => {
-        setReview(editedReview)
-        navigate(`/reviews/${reviewId}`)
+        // go back to movie
+        navigate(`/movies/${movie.id}`)
     }
 
     useEffect(() => {
-        const review = db.reviews.find((review) => review._id === parseInt(reviewId));
-        setReview(review);
-        setEditedReview(review);
-
         const user = db.users.find((user) => user._id === review.userId);
         setUser(user);
 
-        if (review) {
-            fetchMovieById(review.movieId);
-        }
-
-
-    }, [reviewId]);
+        fetchMovieById(movieId);
+    }, [movieId]);
 
 
     const {title, poster_path, release_date} = movie;
@@ -68,9 +63,9 @@ const Reviews = ({edit}) => {
                         <div className={"col"}>
 
                             <div className={"m-0"}>
-                                <p className={"m-0 fs-5"}>
-                                    <Link to={`/users/${user._id}`} className={"fw-bold"}>{user.username}</Link> reviewed
-                                </p>
+
+                                <h3>Leave A Review!</h3>
+
                                 <Link to={`/movies/${movie.id}`}>
                                     <h1 className={"d-inline"}>{title}</h1>
                                     <p className={"d-inline ms-2"}>{release_year}
@@ -80,31 +75,22 @@ const Reviews = ({edit}) => {
                             </div>
                             <div className={"fs-2 mb-2"}>
                                 <StarRating rating={review.rating}/>
-                                {
-                                    edit &&
-                                    <div>
-                                        <input type={"range"} className={"form-range"} min={1} max={5} step={1}
-                                               value={review.rating} onChange={(e) => {
-                                            setReview({...review, rating: e.target.value})
-                                        }}/>
-                                    </div>
-
-                                }
+                                <div>
+                                    <input type={"range"} className={"form-range"} min={1} max={5} step={1}
+                                           value={review.rating} onChange={(e) => {
+                                        setReview({...review, rating: e.target.value})
+                                    }}/>
+                                </div>
                             </div>
 
                             <div className={""}>
-                                {
-                                    !edit &&
-                                    <p className={"m-0"}>{review.reviewText}</p>
-                                }
-                                {
-                                    edit &&
                                     <textarea className={"form-control"} rows={3}
                                               value={review.reviewText}
                                               onChange={(e) => {
                                                   setReview({...review, reviewText: e.target.value})
-                                              }}/>
-                                }
+                                              }}
+                                              placeholder={"Write your review here"}
+                                    />
                             </div>
 
 
@@ -114,7 +100,7 @@ const Reviews = ({edit}) => {
 
 
                 <div className={"col-4"}>
-                    <DetailsSidebar movie={movie} edit={edit} handleCancel={handleCancel} handleSave={handleSave}/>
+                    <DetailsSidebar movie={movie} newReview={true} handleCancel={handleCancel} handleSave={handleSave}/>
                 </div>
 
             </div>
@@ -123,4 +109,4 @@ const Reviews = ({edit}) => {
     )
 }
 
-export default Reviews;
+export default NewReview;

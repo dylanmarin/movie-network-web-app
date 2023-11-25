@@ -11,10 +11,7 @@ const NavigationBar = () => {
             <div className={"movie-navbar"}>
                 <nav className={"navbar movie-navbar-links"}>
                     <div className={"col"}>
-
                         <Link to={""} className={"navbar-text movie-navbar-item"}>Home</Link>
-
-                        <Link to={""} className={"navbar-text movie-navbar-item"}>Following</Link>
                     </div>
 
                     <h2

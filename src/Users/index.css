@@ -49,6 +49,8 @@
     margin-top: auto;
     margin-bottom: auto;
     height: fit-content;
+    background-color: var(--dark-grey);
+    color: var(--primary-text-color);
 }
 
 .edit-profile-forms input{

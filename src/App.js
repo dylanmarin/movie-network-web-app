@@ -14,6 +14,7 @@ import "react-icons"
 import EditUsers from "./Users/Edit";
 import Search from "./Search";
 import Reviews from "./Reviews";
+import NewReview from "./Reviews/NewReview";
 
 function App() {
     return (
@@ -27,8 +28,9 @@ function App() {
                         <Route path="/users/:userId" element={<Users/>}/>
                         <Route path="/users/edit/:userId" element={<EditUsers/>}/>
                         <Route path="/movies/:movieId" element={<MovieDetails/>}/>
-                        <Route path={"/movies/:movieId/review"} element={<Reviews/>}/>
-                        <Route path={"/reviews/:reviewId"} element={<Reviews/>}/>
+                        <Route path={"/movies/:movieId/review"} element={<NewReview/>}/>
+                        <Route path={"/reviews/:reviewId"} element={<Reviews edit={false}/>}/>
+                        <Route path={"/reviews/:reviewId/edit"} element={<Reviews edit={true}/>}/>
                         <Route path={"/search"} element={<Search/>}/>
                         <Route path={"/search/:searchText"} element={<Search/>}/>
 

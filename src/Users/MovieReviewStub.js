@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import StarRating from "../StarRating";
 
 const MovieReviewStub = ({review}) => {
-    const {rating, reviewText, movieId} = review;
+    const {_id, rating, reviewText, movieId} = review;
     const [movie, setMovie] = useState({});
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const MovieReviewStub = ({review}) => {
 
     return (
         <div className={"movie-stub text-center"}>
-            <Link to={`/movies/${movieId}`} className={"m-auto"}>
+            <Link to={`/reviews/${_id}`} className={"m-auto"}>
                 <h4>{title}</h4>
                 <img src={`${POSTER_URL}/${poster_path}`} alt={"poster"} className={"movie-stub-image"}/>
             </Link>

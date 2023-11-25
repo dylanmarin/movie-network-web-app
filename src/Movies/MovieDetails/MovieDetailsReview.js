@@ -6,7 +6,7 @@ import StarRating from "../../StarRating";
 import {MdOutlineNotes} from "react-icons/md";
 
 const MovieDetailsReview = ({review}) => {
-    const {id, userId, movieId, rating, reviewText} = review;
+    const {_id, userId, rating} = review;
 
     const [user, setUser] = useState({});
 
@@ -18,7 +18,7 @@ const MovieDetailsReview = ({review}) => {
 
     return (
         <>
-            <Link to={`/users/${user._id}`}>
+            <Link to={`/reviews/${_id}`}>
                 <div className={"ps-3 my-2"}>
                     <div className={"review-heading"}>
                         {user.username}

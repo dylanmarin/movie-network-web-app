@@ -23,6 +23,10 @@ const Users = () => {
 
     const {username, bio, photoURL} = user;
 
+    const handleSignOut = () => {
+        navigate(`/`);
+    }
+
     return (
         <div>
             <div className={""}>
@@ -43,6 +47,10 @@ const Users = () => {
                             <button className={'btn btn-secondary edit-profile-button'}
                                     onClick={() => navigate(`/users/edit/${userId}`)}>
                                 edit profile
+                            </button>
+                            <button className={'btn btn-secondary edit-profile-button ms-2'}
+                                    onClick={handleSignOut}>
+                                sign out
                             </button>
                         </div>
 
