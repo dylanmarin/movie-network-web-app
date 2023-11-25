@@ -2,6 +2,9 @@ import {useEffect, useState} from "react";
 import db from "../../Database"
 import {Link} from "react-router-dom";
 import "./index.css"
+import StarRating from "../../StarRating";
+import {MdOutlineNotes} from "react-icons/md";
+
 const MovieDetailsReview = ({review}) => {
     const {id, userId, movieId, rating, reviewText} = review;
 
@@ -14,14 +17,19 @@ const MovieDetailsReview = ({review}) => {
 
 
     return (
-        <li className={"list-group-item"}>
-            <div className={"review-heading"}>
-                <Link to={`/users/${user._id}`}>{user.username}</Link> rated this movie {rating} stars.
-            </div>
-            <p className={"review-body"}>
-                {reviewText}
-            </p>
-        </li>
+        <>
+            <Link to={`/users/${user._id}`}>
+                <div className={"ps-3 my-2"}>
+                    <div className={"review-heading"}>
+                        {user.username}
+                    </div>
+                    <div className={"fs-4 my-0 d-inline icon-row"}>
+                        <StarRating rating={rating}/>
+                        <MdOutlineNotes/>
+                    </div>
+                </div>
+            </Link>
+        </>
     )
 }
 

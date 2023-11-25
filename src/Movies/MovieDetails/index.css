@@ -2,11 +2,13 @@
     width: 100%;
 }
 
-.movie-details {
+.details-sidebar {
+    max-height: 360px;
 }
 
 .review-heading {
     font-weight: bold;
+    text-decoration: underline;
 }
 
 .review-heading a {
@@ -41,5 +43,30 @@
     /*background-color: rebeccapurple;*/
 }
 
-.recommendations-slider-container{
+.recommendations-slider-container {
+}
+
+.review-button {
+    border-radius: 0;
+    width: 100%;
+    padding: 10px 0;
+    background-color: var(--dark-grey);
+    color: var(--primary-text-color);
+    border: 0;
+    margin-bottom: 10px;
+}
+
+.following-reviews-list {
+    padding: 12px;
+    background-color: var(--dark-grey);
+    max-height: 320px;
+}
+
+.following-reviews-list-item {
+    overflow-y: scroll;
+    max-height: 200px;
+}
+
+.icon-row {
+    transform: translateY(15px);
 }

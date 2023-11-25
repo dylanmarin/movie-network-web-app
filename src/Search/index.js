@@ -1,6 +1,6 @@
 import {useParams} from "react-router";
 import PopularMovies from "../Shared/PopularMovies";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import UsersSearchResults from "./UsersSearchResults";
 import MovieSearchResults from "./MovieSearchResults";
@@ -15,6 +15,10 @@ const Search = () => {
         e.preventDefault();
         navigate(`/search/${searchTerm}`)
     }
+
+    useEffect(() => {
+        setSearchTerm(searchText);
+    }, [searchText]);
 
     return (
         <>
