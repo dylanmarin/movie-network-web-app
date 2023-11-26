@@ -15,6 +15,7 @@ import EditUsers from "./Users/Edit";
 import Search from "./Search";
 import Reviews from "./Reviews";
 import NewReview from "./Reviews/NewReview";
+import SignIn from "./SignIn";
 
 function App() {
     return (
@@ -33,8 +34,7 @@ function App() {
                         <Route path={"/reviews/:reviewId/edit"} element={<Reviews edit={true}/>}/>
                         <Route path={"/search"} element={<Search/>}/>
                         <Route path={"/search/:searchText"} element={<Search/>}/>
-
-
+                        <Route path={"/signin"} element={<SignIn/>}/>
                     </Routes>
                 </div>
             </div>

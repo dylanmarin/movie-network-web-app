@@ -30,7 +30,7 @@
     /*background-color: rebeccapurple;*/
 }
 
-.star-rating{
+.star-rating {
     font-size: 1.9em;
 }
 
@@ -42,18 +42,18 @@
     font-weight: lighter;
 }
 
-.edit-profile-button{
-    border: none;
-    border-radius: 0;
-    padding: 4px 8px;
-    margin-top: auto;
-    margin-bottom: auto;
-    height: fit-content;
-    background-color: var(--dark-grey);
-    color: var(--primary-text-color);
+.edit-profile-button {
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 4px 8px !important;
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    height: fit-content !important;
+    background-color: var(--dark-grey) !important;
+    color: var(--primary-text-color) !important;
 }
 
-.edit-profile-forms input{
+.edit-profile-forms input {
     border-radius: 0;
     margin-top: 4px;
     margin-bottom: 10px;

@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import UsersSearchResults from "./UsersSearchResults";
 import MovieSearchResults from "./MovieSearchResults";
 import "./index.css"
+import SearchBar from "./SearchBar";
 
 const Search = () => {
     const {searchText} = useParams();
@@ -13,7 +14,9 @@ const Search = () => {
 
     const submitSearch = (e) => {
         e.preventDefault();
-        navigate(`/search/${searchTerm}`)
+        if (searchTerm) {
+            navigate(`/search/${searchTerm}`)
+        }
     }
 
     useEffect(() => {
@@ -22,13 +25,7 @@ const Search = () => {
 
     return (
         <>
-            <form className={"mb-2"} onSubmit={submitSearch}>
-
-                <input className={"form-control w-25 d-inline me-1"} placeholder={"Search movies and users"}
-                       value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
-
-                <button className={"btn btn-secondary"}>Search</button>
-            </form>
+            <SearchBar initialText={searchText}/>
 
             {searchText &&
                 <>

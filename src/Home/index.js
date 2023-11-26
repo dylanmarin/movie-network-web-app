@@ -1,7 +1,11 @@
+import SearchBar from "../Search/SearchBar";
+import PopularMovies from "../Shared/PopularMovies";
+
 const Home = () => {
     return (
         <div>
-            <h1>Home</h1>
+            <SearchBar/>
+            <PopularMovies timeRange={"week"}/>
         </div>
     );
 }

@@ -1,0 +1,7 @@
+.signin-box {
+    background-color: var(--dark-grey);
+    width: 340px;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 10px;
+}

@@ -2,6 +2,7 @@ import "./index.css";
 import {Link, useNavigate} from "react-router-dom";
 import Searchbar from "./Searchbar";
 import NavbarProfile from "./NavbarProfile";
+import {useState} from "react";
 
 const NavigationBar = () => {
     const navigate = useNavigate();
@@ -11,7 +12,9 @@ const NavigationBar = () => {
             <div className={"movie-navbar"}>
                 <nav className={"navbar movie-navbar-links"}>
                     <div className={"col"}>
-                        <Link to={""} className={"navbar-text movie-navbar-item"}>Home</Link>
+                        <Link to={""} className={"navbar-text movie-navbar-item"}>
+                                    Home
+                        </Link>
                     </div>
 
                     <h2

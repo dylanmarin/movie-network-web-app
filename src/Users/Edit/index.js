@@ -1,9 +1,7 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import db from "../../Database"
-import MovieReviewStub from "../MovieReviewStub";
 import "../index.css"
-import UsersFollowing from "../UsersFollowing";
 import {FaCircleUser} from "react-icons/fa6";
 import {useNavigate} from "react-router-dom";
 
