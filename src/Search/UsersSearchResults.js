@@ -11,8 +11,6 @@ const UsersSearchResults = () => {
         setUsers(db.users);
     }, [searchText]);
 
-    console.log(users)
-
     return (
         <>
             <h4>Users</h4>

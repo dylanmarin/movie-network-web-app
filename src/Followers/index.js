@@ -16,8 +16,6 @@ const Followers = () => {
         fetchFollowers()
     }, []);
 
-
-    console.log(followers)
     return (
         <div className={""}>
             <h4>Your Followers:</h4>
@@ -30,6 +28,8 @@ const Followers = () => {
                             <h4 className={""}>
                                 {follower.username}
                             </h4>
+
+                            <p className={"m-0"}>{follower.bio}</p>
                         </div>
                     </Link>
             )}

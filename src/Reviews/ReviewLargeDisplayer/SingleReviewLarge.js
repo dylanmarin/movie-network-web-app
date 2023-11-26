@@ -10,9 +10,6 @@ const SingleReviewLarge = ({review}) => {
     const fetchMovie = async (movieId) => {
         const movie = await client.getMovieDetails(movieId);
         setMovie(movie);
-
-        console.log(review)
-        console.log(movie)
     }
 
     useEffect(() => {
@@ -26,25 +23,25 @@ const SingleReviewLarge = ({review}) => {
             {movie &&
                 <div className={"p-2"}>
 
-                <Link to={`/reviews/${review._id}`} className={"review-large-displayer row"}>
-                    <div className={"review-large-displayer row"}>
-                        <div className={"col-2"}>
-                            <img src={`${IMAGE_BASE_URL}/${movie.poster_path}`} alt={movie.title}
-                                 className={"w-100 m-2"}/>
-                        </div>
+                    <Link to={`/reviews/${review._id}`} className={"review-large-displayer row"}>
+                        <div className={"review-large-displayer row"}>
+                            <div className={"col-2"}>
+                                <img src={`${IMAGE_BASE_URL}/${movie.poster_path}`} alt={movie.title}
+                                     className={"w-100 m-2"}/>
+                            </div>
 
-                        <div className={"col-10"}>
-                            <div className={"my-3"}>
-                                <h5 className={"movie-title m-0"}>{movie.title}</h5>
-                                <span className={"fs-2"}>
+                            <div className={"col-10"}>
+                                <div className={"my-3"}>
+                                    <h5 className={"movie-title m-0"}>{movie.title}</h5>
+                                    <span className={"fs-2"}>
                             <StarRating rating={review.rating}/>
                             </span>
 
-                                <p className={"review-text"}>{review.reviewText}</p>
+                                    <p className={"review-text"}>{review.reviewText}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
                 </div>
             }
         </>

@@ -40,6 +40,10 @@ const DetailsSidebar = ({movie, edit = false, newReview = false, handleSave = nu
         navigate(`/reviews/${reviewId}/edit`)
     }
 
+    const handleDeleteReview = () => {
+        navigate(`/users/${reviews.find((review) => review._id === parseInt(reviewId)).userId}`)
+    }
+
     return (
         <div className={'details-sidebar'}>
             {
@@ -53,14 +57,23 @@ const DetailsSidebar = ({movie, edit = false, newReview = false, handleSave = nu
             }
 
             {allowedToEdit && !edit &&
-                <button
-                    onClick={handleEditButton}
-                    className={"btn btn-secondary sidebar-button"}>
-                    Edit Review
-                </button>
+                <>
+                    <button
+                        onClick={handleEditButton}
+                        className={"btn btn-secondary sidebar-button"}>
+                        Edit Review
+                    </button>
+
+                    <button
+                        onClick={handleDeleteReview}
+                        className={"btn btn-secondary sidebar-button"}>
+                        Delete Review
+                    </button>
+                </>
             }
 
-            {(edit || newReview) &&
+            {
+                (edit || newReview) &&
                 <>
                     <button
                         onClick={handleSave}
@@ -98,7 +111,8 @@ const DetailsSidebar = ({movie, edit = false, newReview = false, handleSave = nu
                 }
             </div>
         </div>
-    );
+    )
+        ;
 }
 
 export default DetailsSidebar;

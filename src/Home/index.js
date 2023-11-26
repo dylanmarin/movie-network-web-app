@@ -12,8 +12,6 @@ const Home = () => {
         const user = db.users.find((user) => user._id === parseInt(1))
         setUser(user);
 
-        console.log(Object.keys(user.following))
-
         const reviews = db.reviews.filter((review) => Object.keys(user.following).includes(review.userId.toString()))
         setReviews(reviews);
 
@@ -26,7 +24,7 @@ const Home = () => {
 
             <PopularMovies timeRange={"week"}/>
 
-            <h4>Reviews from your followers</h4>
+            <h4>Reviews from people you follow</h4>
             <ReviewLargeDisplayer reviews={reviews}/>
         </div>
     );

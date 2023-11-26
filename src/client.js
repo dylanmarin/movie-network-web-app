@@ -38,6 +38,5 @@ export const getMoviesSearchResults = async (searchString) => {
     const response = await axios.get(
         `${TMDB_API}/search/movie?query=${searchString.replace(" ", "%20")}&include_adult=false&language=en-US&page=1&${TMBD_API_AUTH_SUFFIX}`
     );
-    console.log(response.data.results)
     return response.data.results;
 }
