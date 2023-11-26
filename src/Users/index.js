@@ -6,6 +6,7 @@ import "./index.css"
 import UsersFollowing from "./UsersFollowing";
 import {FaCircleUser} from "react-icons/fa6";
 import {useNavigate} from "react-router-dom";
+import ReviewLargeDisplayer from "../Reviews/ReviewLargeDisplayer";
 
 
 const Users = () => {
@@ -13,9 +14,14 @@ const Users = () => {
     const [user, setUser] = useState({});
     const [reviews, setReviews] = useState([]);
     const navigate = useNavigate();
+    const [currentUserId, setCurrentUserId] = useState(1);
+    const [following, setFollowing] = useState(false);
+
     useEffect(() => {
         const user = db.users.find((user) => user._id === parseInt(userId))
         setUser(user);
+
+        setFollowing(Object.keys(user.following).includes(currentUserId.toString()))
 
         const reviews = db.reviews.filter((review) => review.userId === parseInt(userId))
         setReviews(reviews);
@@ -24,7 +30,15 @@ const Users = () => {
     const {username, bio, photoURL} = user;
 
     const handleSignOut = () => {
-        navigate(`/`);
+        navigate(`/signin`);
+    }
+
+    const handleFollow = () => {
+        setFollowing(true);
+    }
+
+    const handleUnfollow = () => {
+        setFollowing(false);
     }
 
     return (
@@ -44,16 +58,49 @@ const Users = () => {
 
                         <div className={"d-flex flex-row"}>
                             <h1 className={"username-bold me-5"}>{username}</h1>
-                            <button className={'btn btn-secondary edit-profile-button'}
-                                    onClick={() => navigate(`/users/edit/${userId}`)}>
-                                edit profile
-                            </button>
-                            <button className={'btn btn-secondary edit-profile-button ms-2'}
-                                    onClick={handleSignOut}>
-                                sign out
-                            </button>
+                            {
+                                (user._id === currentUserId) &&
+                                <>
+                                    <button className={'btn btn-secondary edit-profile-button'}
+                                            onClick={() => navigate(`/users/edit/${userId}`)}>
+                                        edit profile
+                                    </button>
+                                    <button className={'btn btn-secondary edit-profile-button ms-2'}
+                                            onClick={handleSignOut}>
+                                        sign out
+                                    </button>
+                                </>
+                            }
+                            {
+                                (user._id !== currentUserId) &&
+                                <>
+                                    {following &&
+                                        <button className={'btn btn-secondary edit-profile-button'}
+                                                onClick={handleUnfollow}>
+                                            unfollow
+                                        </button>
+                                    }
+                                    {!following &&
+                                        <button className={'btn btn-secondary edit-profile-button ms-2'}
+                                                onClick={handleFollow}>
+                                            follow
+                                        </button>
+                                    }
+                                </>
+                            }
                         </div>
 
+                    </div>
+                    <div className={"col-2"}>
+                        {
+                            (user._id === currentUserId) &&
+                            <button className={'btn btn-secondary edit-profile-button ms-2'}
+                                    onClick={() => {
+                                        navigate('/followers')
+                                    }}>
+                                followers
+                            </button>
+                        }
                     </div>
                     <div className={"col-4"}>
                         <h2>Following:</h2>
@@ -74,9 +121,17 @@ const Users = () => {
                             )
                         }
                     </div>
-
                 </div>
 
+                <div>
+                    {
+                        (user._id === currentUserId) &&
+                        <>
+                            <h4>All your reviews</h4>
+                            <ReviewLargeDisplayer reviews={reviews}/>
+                        </>
+                    }
+                </div>
 
             </div>
         </div>

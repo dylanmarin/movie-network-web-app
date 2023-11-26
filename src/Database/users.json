@@ -17,7 +17,11 @@
     "lastName": "Curry",
     "username": "kimmn",
     "bio": "I like happy movies.",
-    "email": "kimmy@gmail.com"
+    "email": "kimmy@gmail.com",
+    "following": {
+      "1": "melonmizu",
+      "3": "reyrey"
+    }
   },
   {
     "_id": 3,
@@ -25,6 +29,10 @@
     "lastName": "Conti",
     "username": "reyrey",
     "bio": "I like the color green.",
-    "email": "reina@gmail.com"
+    "email": "reina@gmail.com",
+    "following": {
+      "1": "melonmizu",
+      "2": "kimmn"
+    }
   }
 ]

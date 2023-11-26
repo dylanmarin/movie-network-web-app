@@ -16,6 +16,7 @@ import Search from "./Search";
 import Reviews from "./Reviews";
 import NewReview from "./Reviews/NewReview";
 import SignIn from "./SignIn";
+import Followers from "./Followers";
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                         <Route path={"/search"} element={<Search/>}/>
                         <Route path={"/search/:searchText"} element={<Search/>}/>
                         <Route path={"/signin"} element={<SignIn/>}/>
+                        <Route path={"/followers"} element={<Followers/>}/>
                     </Routes>
                 </div>
             </div>

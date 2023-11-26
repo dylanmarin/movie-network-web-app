@@ -8,11 +8,11 @@ const StarRating = ({rating}) => {
 
     return (
         <>
-            <FaStar className={`star-icon`} color={rating >= 1 ? starFilledColor : starEmptyColor}/>
-            <FaStar className={`star-icon`} color={rating >= 2 ? starFilledColor : starEmptyColor}/>
-            <FaStar className={`star-icon`} color={rating >= 3 ? starFilledColor : starEmptyColor}/>
-            <FaStar className={`star-icon`} color={rating >= 4 ? starFilledColor : starEmptyColor}/>
-            <FaStar className={`star-icon`} color={rating >= 5 ? starFilledColor : starEmptyColor}/>
+                <FaStar className={`star-icon`} color={rating >= 1 ? starFilledColor : starEmptyColor}/>
+                <FaStar className={`star-icon`} color={rating >= 2 ? starFilledColor : starEmptyColor}/>
+                <FaStar className={`star-icon`} color={rating >= 3 ? starFilledColor : starEmptyColor}/>
+                <FaStar className={`star-icon`} color={rating >= 4 ? starFilledColor : starEmptyColor}/>
+                <FaStar className={`star-icon`} color={rating >= 5 ? starFilledColor : starEmptyColor}/>
         </>
     )
 }
