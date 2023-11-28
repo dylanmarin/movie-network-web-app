@@ -21,7 +21,6 @@ const Home = () => {
         <div>
             <SearchBar/>
 
-
             <PopularMovies timeRange={"week"}/>
 
             <h4>Reviews from people you follow</h4>

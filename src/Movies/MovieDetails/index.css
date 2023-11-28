@@ -47,13 +47,13 @@
 }
 
 .sidebar-button {
-    border-radius: 0;
-    width: 100%;
-    padding: 10px 0;
-    background-color: var(--dark-grey);
-    color: var(--primary-text-color);
-    border: 0;
-    margin-bottom: 10px;
+    border-radius: 0 !important;
+    width: 100% !important;
+    padding: 10px 0 !important;
+    background-color: var(--dark-grey) !important;
+    color: var(--primary-text-color) !important;
+    border: 0 !important;
+    margin-bottom: 10px !important;
 }
 
 .following-reviews-list {

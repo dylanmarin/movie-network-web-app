@@ -60,6 +60,7 @@
 .profile-text {
     margin: 0 auto !important;
     margin-left: 5px !important;
+    display: inline;
 }
 
 .searchbar {

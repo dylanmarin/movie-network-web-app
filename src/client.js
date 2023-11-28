@@ -1,5 +1,6 @@
 import axios from "axios";
 export const TMDB_API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+
 export const TMDB_API = "https://api.themoviedb.org/3";
 export const TMBD_API_AUTH_SUFFIX = `api_key=${TMDB_API_KEY}`;
 

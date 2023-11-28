@@ -4,9 +4,6 @@ import {Routes, Route, Navigate} from "react-router";
 import Home from "./Home";
 import NavigationBar from "./NavigationBar";
 import "./shared.css"
-import '@popperjs/core/lib/popper.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.js'
 import MovieDetails from "./Movies/MovieDetails";
 import Users from "./Users";
 import "./index.css"
