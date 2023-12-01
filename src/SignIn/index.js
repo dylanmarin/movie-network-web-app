@@ -2,16 +2,20 @@ import "./index.css"
 import * as usersClient from "../Users/client.js";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {setLoggedInUser} from "../Users/usersReducer";
 
 const SignIn = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const submitForm = async () => {
         const response = await usersClient.signin({username, password})
         if (response) {
+            dispatch(setLoggedInUser(response));
             navigate(`/users/${response._id}`)
         } else {
             alert("Invalid username or password")
@@ -21,6 +25,7 @@ const SignIn = () => {
     const submitCreateAccount = async () => {
         const response = await usersClient.signup({username, password})
         if (response) {
+            dispatch(setLoggedInUser(response));
             navigate(`/users/${response._id}`)
         } else {
             alert("Username taken")

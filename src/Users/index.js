@@ -8,7 +8,8 @@ import {FaCircleUser} from "react-icons/fa6";
 import {useNavigate} from "react-router-dom";
 import ReviewLargeDisplayer from "../Reviews/ReviewLargeDisplayer";
 import * as usersClient from "./client.js";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "./usersReducer";
 
 
 const Users = () => {
@@ -17,7 +18,7 @@ const Users = () => {
 
     const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
 
-
+    const [currentUser, setCurrentUser] = useState({});
     const [isOurAccount, setIsOurAccount] = useState(false);
     const [user, setUser] = useState({});
     const [following, setFollowing] = useState(false);
@@ -42,11 +43,12 @@ const Users = () => {
 
     }, [userId]);
 
-
     const {username, bio, photoURL} = user;
+    const dispatch = useDispatch();
 
     const handleSignOut = async () => {
         await usersClient.signout();
+        dispatch(logout());
         navigate(`/signin`);
     }
 
@@ -119,21 +121,21 @@ const Users = () => {
                                 </div>
 
                             </div>
-                            {/*<div className={"col-2"}>*/}
-                            {/*    {*/}
-                            {/*        isOurAccount &&*/}
-                            {/*        <button className={'btn btn-secondary edit-profile-button ms-2'}*/}
-                            {/*                onClick={() => {*/}
-                            {/*                    navigate('/followers')*/}
-                            {/*                }}>*/}
-                            {/*            followers*/}
-                            {/*        </button>*/}
-                            {/*    }*/}
-                            {/*</div>*/}
-                            {/*<div className={"col-4"}>*/}
-                            {/*    <h2>Following:</h2>*/}
-                            {/*    <UsersFollowing/>*/}
-                            {/*</div>*/}
+                            <div className={"col-2"}>
+                                {
+                                    isOurAccount &&
+                                    <button className={'btn btn-secondary edit-profile-button ms-2'}
+                                            onClick={() => {
+                                                navigate('/followers')
+                                            }}>
+                                        followers
+                                    </button>
+                                }
+                            </div>
+                            <div className={"col-4"}>
+                                <h2>Following:</h2>
+                                <UsersFollowing/>
+                            </div>
                         </div>
 
                         <p>{bio}</p>

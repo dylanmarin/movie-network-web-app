@@ -5,30 +5,27 @@ import NavbarProfile from "./NavbarProfile";
 import {FaUserCircle} from "react-icons/fa";
 import * as usersClient from "../Users/client";
 import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {logout, setLoggedInUser} from "../Users/usersReducer";
 
 const NavigationBar = () => {
     const navigate = useNavigate();
-    const [signedIn, setSignedIn] = useState(false);
     const [profileLink, setProfileLink] = useState("");
-    const path = useLocation().pathname;
+
+    const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
+    const [signedIn, setSignedIn] = useState(loggedInUser._id !== null);
+    const dispatch = useDispatch();
+
     const handleSignOut = async () => {
         await usersClient.signout();
+        dispatch(logout());
         navigate(`/signin`);
     }
 
-
     useEffect(() => {
-        const init = async () => {
-            const currentUser = await usersClient.account();
-            setProfileLink(`/users/${currentUser._id}`);
-
-            if (currentUser._id !== undefined) {
-                setSignedIn(true);
-            }
-        }
-
-        init();
-    }, [path]);
+        setSignedIn(loggedInUser._id !== undefined);
+        setProfileLink(`/users/${loggedInUser?._id}`);
+    }, [loggedInUser]);
 
     return (
         <>
@@ -48,17 +45,13 @@ const NavigationBar = () => {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                <Link className="nav-link active" aria-current="page" to="/home">Home</Link>
                             </li>
 
                             {!signedIn &&
                                 <li className="nav-item">
-                                    <Link to={"/signin"} className={"navbar-text movie-navbar-item"}>
-                                        <>
-                                            <div className={"profile-text"}>
-                                                Sign In
-                                            </div>
-                                        </>
+                                    <Link to={"/signin"} className={"navbar-text nav-link movie-navbar-item"}>
+                                        Sign In
                                     </Link>
                                 </li>
                             }
