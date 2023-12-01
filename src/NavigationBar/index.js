@@ -3,18 +3,20 @@ import {Link, useNavigate} from "react-router-dom";
 import Searchbar from "./Searchbar";
 import NavbarProfile from "./NavbarProfile";
 import {FaUserCircle} from "react-icons/fa";
+import * as usersClient from "../Users/client";
 
 const NavigationBar = () => {
     const navigate = useNavigate();
-    const handleSignOut = () => {
-        navigate("/signin");
+    const handleSignOut = async () => {
+        await usersClient.signout();
+        navigate(`/signin`);
     }
 
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
-                    <Link to={"/home"} class="navbar-brand">WebsiteName</Link>
+                    <Link to={"/home"} className="navbar-brand">WebsiteName</Link>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -32,10 +34,10 @@ const NavigationBar = () => {
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                <span className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                    aria-expanded="false">
                                     <NavbarProfile/>
-                                </a>
+                                </span>
 
                                 <ul className="dropdown-menu">
                                     <li><Link to={"/users/1"} className="dropdown-item" href="#">Profile</Link></li>

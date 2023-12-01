@@ -1,8 +1,30 @@
 import "./index.css"
+import * as usersClient from "../Users/client.js";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const SignIn = () => {
-    const submitForm = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
+
+    const submitForm = async () => {
+        const response = await usersClient.signin({username, password})
+        if (response) {
+            navigate(`/users/${response._id}`)
+        } else {
+            alert("Invalid username or password")
+        }
+    }
+
+    const submitCreateAccount = async () => {
+        const response = await usersClient.signup({username, password})
+        if (response) {
+            navigate(`/users/${response._id}`)
+        } else {
+            alert("Username taken")
+        }
     }
 
     return (
@@ -13,14 +35,16 @@ const SignIn = () => {
                 <form onSubmit={submitForm}>
                     <h4>Sign In</h4>
 
-                    <input className={"form-control m-1"} placeholder={"Username"}/>
+                    <input className={"form-control m-1"} placeholder={"Username"} value={username}
+                           onChange={(e) => setUsername(e.target.value)}/>
 
-                    <input className={"form-control m-1"} placeholder={"Password"} type={"password"}/>
+                    <input className={"form-control m-1"} placeholder={"Password"} type={"password"} value={password}
+                           onChange={(e) => setPassword(e.target.value)}/>
 
                     <button className={"btn btn-secondary w-100 m-1"}>Sign In</button>
-
-                    <button className={"btn btn-secondary w-100 m-1"}>Create Account</button>
                 </form>
+
+                <button className={"btn btn-secondary w-100 m-1"} onClick={submitCreateAccount}>Create Account</button>
 
             </div>
 
