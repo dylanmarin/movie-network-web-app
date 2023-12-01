@@ -5,9 +5,9 @@ const ReviewLargeDisplayer = ({reviews}) => {
 
     return (
         <div className={"reviews-list"}>
-            {reviews.map((review) => {
+            {reviews.map((review, i) => {
                 return (
-                    <SingleReviewLarge review={review}/>
+                    <SingleReviewLarge key={i} review={review}/>
                 )
             })}
         </div>

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import * as client from "../../client";
+import * as client from "../../Movies/client";
 import "./index.css"
 import {Link} from "react-router-dom";
 import StarRating from "../../StarRating";

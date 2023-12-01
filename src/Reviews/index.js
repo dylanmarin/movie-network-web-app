@@ -1,7 +1,7 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
-import * as client from "../client";
-import DetailsSidebar from "../Movies/MovieDetails/DetailsSidebar";
+import * as client from "../Movies/client";
+import DetailsSidebar from "../Movies/DetailsSidebar";
 import "./index.css"
 import db from "../Database";
 import {Link, useNavigate} from "react-router-dom";

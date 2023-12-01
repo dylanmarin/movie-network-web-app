@@ -1,8 +1,7 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
-import db from "../../Database"
-import * as client from "../../client";
-import MovieStubSimple from "../../Shared/MovieStubSimple";
+import * as client from "./client";
+import MovieStubSimple from "../Shared/MovieStubSimple";
 
 const SimilarFilms = () => {
     const {movieId} = useParams();
@@ -15,11 +14,7 @@ const SimilarFilms = () => {
     }
 
     useEffect(() => {
-        const movie = db.movies.find((movie) => movie.id === parseInt(movieId))
-        setMovie(movie);
-
         fetchRecommendations(movieId);
-
     }, [movieId]);
 
     return (

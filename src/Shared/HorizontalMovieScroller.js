@@ -8,10 +8,8 @@ const HorizontalMovieScroller = ({movies}) => {
             <div className={"movie-scroller"}>
 
                 {
-                    movies.map((movie) =>
-                        <>
-                            <MovieStubSimple movie={movie}/>
-                        </>
+                    movies.map((movie, i) =>
+                        <MovieStubSimple key={i} movie={movie}/>
                     )
                 }
             </div>

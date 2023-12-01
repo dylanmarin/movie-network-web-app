@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import db from "../../Database"
+import db from "../Database"
 import {Link} from "react-router-dom";
 import "./index.css"
-import StarRating from "../../StarRating";
+import StarRating from "../StarRating";
 import {MdOutlineNotes} from "react-icons/md";
 
 const MovieDetailsReview = ({review}) => {

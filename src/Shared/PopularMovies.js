@@ -1,4 +1,4 @@
-import * as client from "../client";
+import * as client from "../Movies/client";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import MovieStubSimple from "./MovieStubSimple";

@@ -2,7 +2,7 @@ import MovieDetailsReview from "./MovieDetailsReview";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useParams} from "react-router";
-import db from "../../Database";
+import db from "../Database";
 import "./index.css";
 
 const DetailsSidebar = ({movie, edit = false, newReview = false, handleSave = null, handleCancel = null}) => {

@@ -1,6 +1,6 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
-import * as client from "../client";
+import * as client from "../Movies/client";
 import HorizontalMovieScroller from "../Shared/HorizontalMovieScroller";
 import MoviesTiled from "../Shared/MoviesTiled";
 
@@ -8,7 +8,7 @@ const MovieSearchResults = () => {
     const {searchText} = useParams();
     const [searchResults, setSearchResults] = useState([]);
     const fetchMovieSearch = async (searchText) => {
-        const searchResults = await client.getMoviesSearchResults(searchText);
+        const searchResults = await client.searchMovies(searchText);
         setSearchResults(searchResults);
     };
 

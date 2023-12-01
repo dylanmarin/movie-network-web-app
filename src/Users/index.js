@@ -153,15 +153,15 @@ const Users = () => {
                         {/*    </div>*/}
                         {/*</div>*/}
 
-                        {/*<div>*/}
-                        {/*    {*/}
-                        {/*        isOurAccount &&*/}
-                        {/*        <>*/}
-                        {/*            <h4>All your reviews</h4>*/}
-                        {/*            <ReviewLargeDisplayer reviews={reviews}/>*/}
-                        {/*        </>*/}
-                        {/*    }*/}
-                        {/*</div>*/}
+                        <div>
+                            {
+                                isOurAccount &&
+                                <>
+                                    <h4>All your reviews</h4>
+                                    <ReviewLargeDisplayer reviews={reviews}/>
+                                </>
+                            }
+                        </div>
 
                     </div>
                 </div>}

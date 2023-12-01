@@ -1,21 +1,19 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
-import db from "../../Database"
+import db from "../Database"
 import "./index.css"
 import MovieDetailsReview from "./MovieDetailsReview";
 import DetailsSidebar from "./DetailsSidebar";
 import SimilarFilms from "./SimilarFilms";
-import * as client from "../../client";
+import * as client from "./client";
 
 const MovieDetails = () => {
     const {movieId} = useParams();
     const [movie, setMovie] = useState({});
     const [reviews, setReviews] = useState([]);
     const [credits, setCredits] = useState({});
-    const [recommendations, setRecommendations] = useState([]);
 
-    const IMAGE_URL_BASE = "https://image.tmdb.org/t/p/";
-    const IMAGE_SIZE = "w500/";
+    const IMAGE_URL_BASE = "https://image.tmdb.org/t/p/w500/";
 
     const fetchDetails = async (movieId) => {
         const movie = await client.getMovieDetails(movieId)
@@ -49,7 +47,7 @@ const MovieDetails = () => {
                     <div className={"row"}>
 
                         <div className={"col-4"}>
-                            <img src={`${IMAGE_URL_BASE}${IMAGE_SIZE}${poster_path}`} alt={"poster"}
+                            <img src={`${IMAGE_URL_BASE}${poster_path}`} alt={"poster"}
                                  className={"movie-poster"}/>
                         </div>
 
