@@ -3,18 +3,19 @@ import {useEffect, useState} from "react";
 import * as client from "../Movies/client";
 import DetailsSidebar from "../Movies/DetailsSidebar";
 import "./index.css"
-import db from "../Database";
 import {Link, useNavigate} from "react-router-dom";
 import StarRating from "../StarRating";
+import {useSelector} from "react-redux";
+import * as reviewsClient from "./client";
 
 const NewReview = () => {
     const {movieId} = useParams();
-    const [review, setReview] = useState({
-        rating: 3,
-        reviewText: ""
-    });
+    const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
+
+    const [rating, setRating] = useState(3);
+    const [reviewText, setReviewText] = useState("");
+
     const [movie, setMovie] = useState({});
-    const [user, setUser] = useState({});
     const navigate = useNavigate();
 
     const IMAGE_URL_BASE = "https://image.tmdb.org/t/p/w500/";
@@ -24,11 +25,22 @@ const NewReview = () => {
         setMovie(movie)
     }
 
-    const handleSave = () => {
+    const handleSave = async () => {
         // save review changes
-        // save to db
-        // get new id
-        // navigate(`/reviews/${reviewId}`)
+        const response = await reviewsClient.createReview({
+            userId: loggedInUser._id,
+            movieId: movie.id,
+            reviewText: reviewText,
+            rating: rating,
+            date: new Date().getTime()
+        });
+
+        if (response.movieId === movie.id) {
+            navigate(`/reviews/${response._id}`)
+        } else {
+            alert("Something went wrong!")
+            navigate(`/movies/${movie.id}`)
+        }
     }
 
     const handleCancel = () => {
@@ -37,9 +49,6 @@ const NewReview = () => {
     }
 
     useEffect(() => {
-        const user = db.users.find((user) => user._id === review.userId);
-        setUser(user);
-
         fetchMovieById(movieId);
     }, [movieId]);
 
@@ -74,20 +83,20 @@ const NewReview = () => {
                                 </Link>
                             </div>
                             <div className={"fs-2 mb-2"}>
-                                <StarRating rating={review.rating}/>
+                                <StarRating rating={rating}/>
                                 <div>
                                     <input type={"range"} className={"form-range"} min={1} max={5} step={1}
-                                           value={review.rating} onChange={(e) => {
-                                        setReview({...review, rating: e.target.value})
+                                           value={rating} onChange={(e) => {
+                                        setRating(parseInt(e.target.value))
                                     }}/>
                                 </div>
                             </div>
 
                             <div className={""}>
                                     <textarea className={"form-control"} rows={3}
-                                              value={review.reviewText}
+                                              value={reviewText}
                                               onChange={(e) => {
-                                                  setReview({...review, reviewText: e.target.value})
+                                                  setReviewText(e.target.value)
                                               }}
                                               placeholder={"Write your review here"}
                                     />
