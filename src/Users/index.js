@@ -1,6 +1,5 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
-import db from "../Database"
 import MovieReviewStub from "./MovieReviewStub";
 import "./index.css"
 import UsersFollowing from "./UsersFollowing";
@@ -10,38 +9,58 @@ import ReviewLargeDisplayer from "../Reviews/ReviewLargeDisplayer";
 import * as usersClient from "./client.js";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "./usersReducer";
+import * as followersClient from "../Followers/client";
 
 
 const Users = () => {
     const navigate = useNavigate();
     const {userId} = useParams();
-
-    const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
-
-    const [currentUser, setCurrentUser] = useState({});
     const [isOurAccount, setIsOurAccount] = useState(false);
     const [user, setUser] = useState({});
-    const [following, setFollowing] = useState(false);
     const [reviews, setReviews] = useState([]);
+
+    const [following, setFollowing] = useState(false);
+
+    const currentUser = useSelector((state) => state.usersReducer.loggedInUser);
+
+
+    const isFollowing = (followers) => {
+        if (currentUser) {
+            return followers.some((follower) => follower._id === currentUser._id);
+        }
+        return false;
+    }
+
+    const validUserId = userId.length === 24;
 
 
     useEffect(() => {
-
         const initUsers = async () => {
-            const currentUser = await usersClient.account();
             const user = await usersClient.findUserById(userId);
-
-            setCurrentUser(currentUser);
+            if (!user._id) {
+                navigate("/home");
+            }
             setUser(user);
 
-            setIsOurAccount(currentUser._id === user._id);
-            setFollowing(currentUser.following.includes(user._id));
+            setIsOurAccount(currentUser && (currentUser._id === user._id));
         }
 
-        initUsers();
+        const initFollows = async () => {
+            const follows = await followersClient.findFollowersOfUser(userId);
+            const followers = follows.map((follows) => follows['follower']);
 
+            if (followers) {
+                setFollowing(isFollowing(followers))
+            }
+        }
 
-    }, [userId]);
+        if (validUserId) {
+            initUsers();
+            initFollows();
+        } else {
+            navigate("/home");
+        }
+    }, [userId, following]);
 
     const {username, bio, photoURL} = user;
     const dispatch = useDispatch();
@@ -52,26 +71,26 @@ const Users = () => {
         navigate(`/signin`);
     }
 
-    const handleFollow = () => {
-        setFollowing(true);
-        usersClient.updateUser(currentUser._id, {
-            ...currentUser,
-            following: [...currentUser.following, user._id]
-        })
+    const handleFollow = async () => {
+        const follow = await followersClient.userFollowsUser(user._id);
+
+        if (follow) {
+            setFollowing(true);
+        }
+
     }
 
-    const handleUnfollow = () => {
-        setFollowing(false);
+    const handleUnfollow = async () => {
+        const status = await followersClient.userUnfollowsUser(user._id);
 
-        usersClient.updateUser(currentUser._id, {
-            ...currentUser,
-            following: currentUser.following.filter((id) => id !== user._id)
-        })
+        if (status.deletedCount > 0) {
+            setFollowing(false);
+        }
     }
 
     return (
         <>
-            {currentUser && user &&
+            {user._id && validUserId &&
                 <div>
                     <div className={""}>
                         <div className={"row"}>
@@ -101,23 +120,31 @@ const Users = () => {
                                             </button>
                                         </>
                                     }
-                                    {
+                                    {currentUser && (
                                         !isOurAccount &&
                                         <>
-                                            {following &&
+                                            {(following) &&
                                                 <button className={'btn btn-secondary edit-profile-button'}
                                                         onClick={handleUnfollow}>
                                                     unfollow
                                                 </button>
                                             }
-                                            {!following &&
+                                            {(!following) &&
                                                 <button className={'btn btn-secondary edit-profile-button ms-2'}
                                                         onClick={handleFollow}>
                                                     follow
                                                 </button>
                                             }
                                         </>
+                                    )
                                     }
+                                    {!currentUser &&
+                                        <button className={'btn btn-secondary edit-profile-button ms-2'}
+                                                disabled={true}>
+                                            sign in to follow users
+                                        </button>
+                                    }
+
                                 </div>
 
                             </div>
@@ -140,18 +167,18 @@ const Users = () => {
 
                         <p>{bio}</p>
 
-                        {/*<div>*/}
-                        {/*    <h4>Recently watched by {username}</h4>*/}
-                        {/*    <div className={"reviewed-movies"}>*/}
-                        {/*        {*/}
-                        {/*            reviews.map((review) =>*/}
-                        {/*                <>*/}
-                        {/*                    <MovieReviewStub review={review}/>*/}
-                        {/*                </>*/}
-                        {/*            )*/}
-                        {/*        }*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
+                        <div>
+                            <h4>Recently watched by {username}</h4>
+                            <div className={"reviewed-movies"}>
+                                {
+                                    reviews.map((review) =>
+                                        <>
+                                            <MovieReviewStub review={review}/>
+                                        </>
+                                    )
+                                }
+                            </div>
+                        </div>
 
                         <div>
                             {
@@ -164,7 +191,8 @@ const Users = () => {
                         </div>
 
                     </div>
-                </div>}
+                </div>
+            }
         </>
     )
 }

@@ -1,28 +1,34 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {FaUserCircle} from "react-icons/fa";
 import {useSelector} from "react-redux";
-import * as usersClient from "../Users/client.js";
-
+import * as followsClient from "./client"
 
 const Followers = () => {
-    const [followers, setFollowers] = useState([]);
+    const [followersOfLoggedInUser, setFollowersOfLoggedInUser] = useState([]);
     const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
 
     const fetchFollowers = async () => {
-        const allUsers = await usersClient.findAllUsers();
-        const followers = allUsers.filter((user) => user.following.includes(loggedInUser._id))
-        setFollowers(followers);
+        const follows = await followsClient.findFollowersOfUser(loggedInUser._id);
+        const followers = follows.map((follows) => follows['follower']);
+        setFollowersOfLoggedInUser(followers);
     }
 
+    const navigate = useNavigate();
+
     useEffect(() => {
-        fetchFollowers()
+        if (loggedInUser) {
+            fetchFollowers()
+        } else {
+            navigate("/signin")
+            alert("You must be logged in to view your followers.")
+        }
     }, [loggedInUser]);
 
     return (
         <div className={""}>
             <h4>Your Followers:</h4>
-            {followers.map((follower) =>
+            {followersOfLoggedInUser.map((follower) =>
                 <Link to={`/users/${follower._id}`} className={"row mb-2"}>
                     <div className={"col-auto pe-0"}>
                         <FaUserCircle className={"fs-2"}/>

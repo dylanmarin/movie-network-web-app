@@ -1,42 +1,31 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
-import db from "../Database"
 import {Link} from "react-router-dom";
-import * as usersClient from "./client";
+import * as followsClient from "../Followers/client";
 
 
 const UsersFollowing = () => {
     const {userId} = useParams();
-    const [user, setUser] = useState({});
-    const [following, setFollowing] = useState([]);
-    const [allUsers, setAllUsers] = useState([]);
+    const [usersFollowedByThisUser, setUsersFollowedByThisUser] = useState([]);
 
     useEffect(() => {
+        const getFollowers = async () => {
+            const follows = await followsClient.findFollowedUsersByUser(userId);
+            const usersBeingFollowed = follows.map((follows) => follows['followed']);
 
-        const getUser = async () => {
-            const user = await usersClient.findUserById(userId);
-            const allUsers = await usersClient.findAllUsers();
-
-            setAllUsers(allUsers);
-            setUser(user);
-            const {following} = user;
-            setFollowing(following)
+            setUsersFollowedByThisUser(usersBeingFollowed);
         }
 
-        getUser(user);
+        getFollowers();
 
     }, [userId]);
 
-    console.log(following)
-
-
     return (
         <>
-            {following && following.map((userId) => {
-                    const {username} = allUsers.find((user) => user._id === userId);
+            {usersFollowedByThisUser && usersFollowedByThisUser.map((user, i) => {
                     return (
-                        <div>
-                            <Link to={`/users/${userId}`}>{username}</Link>
+                        <div key={i}>
+                            <Link to={`/users/${user._id}`}>{user.username}</Link>
                         </div>
                     )
                 }

@@ -1,6 +1,6 @@
 import * as client from "./client";
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setLoggedInUser} from "./usersReducer";
 
 function CurrentUser({children}) {

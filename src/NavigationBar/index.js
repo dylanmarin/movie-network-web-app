@@ -13,7 +13,8 @@ const NavigationBar = () => {
     const [profileLink, setProfileLink] = useState("");
 
     const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
-    const [signedIn, setSignedIn] = useState(loggedInUser._id !== null);
+
+    const [signedIn, setSignedIn] = useState(loggedInUser && (loggedInUser._id !== null));
     const dispatch = useDispatch();
 
     const handleSignOut = async () => {
@@ -23,7 +24,7 @@ const NavigationBar = () => {
     }
 
     useEffect(() => {
-        setSignedIn(loggedInUser._id !== undefined);
+        setSignedIn(loggedInUser && (loggedInUser._id !== undefined));
         setProfileLink(`/users/${loggedInUser?._id}`);
     }, [loggedInUser]);
 
