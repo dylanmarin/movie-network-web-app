@@ -8,39 +8,40 @@ import {FaCircleUser} from "react-icons/fa6";
 import {useNavigate} from "react-router-dom";
 import ReviewLargeDisplayer from "../Reviews/ReviewLargeDisplayer";
 import * as usersClient from "./client.js";
+import {useSelector} from "react-redux";
 
 
 const Users = () => {
     const navigate = useNavigate();
     const {userId} = useParams();
-    const [currentUser, setCurrentUser] = useState({});
+
+    const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
+
+
+    const [isOurAccount, setIsOurAccount] = useState(false);
     const [user, setUser] = useState({});
     const [following, setFollowing] = useState(false);
+    const [reviews, setReviews] = useState([]);
 
-    const getAccount = async () => {
-        const response = await usersClient.account();
-        setCurrentUser(response);
-    }
-
-    const getUser = async (userId) => {
-        const response = await usersClient.findUserById(userId);
-        setUser(response);
-    }
 
     useEffect(() => {
-        getAccount();
-        getUser(userId);
+
+        const initUsers = async () => {
+            const currentUser = await usersClient.account();
+            const user = await usersClient.findUserById(userId);
+
+            setCurrentUser(currentUser);
+            setUser(user);
+
+            setIsOurAccount(currentUser._id === user._id);
+            setFollowing(currentUser.following.includes(user._id));
+        }
+
+        initUsers();
+
 
     }, [userId]);
 
-
-
-    const reviews = user.reviews;
-
-    if (currentUser !== {}) {
-        console.log(currentUser)
-        // setFollowing(Object.keys(currentUser.following).includes(user._id));
-    }
 
     const {username, bio, photoURL} = user;
 
@@ -51,10 +52,19 @@ const Users = () => {
 
     const handleFollow = () => {
         setFollowing(true);
+        usersClient.updateUser(currentUser._id, {
+            ...currentUser,
+            following: [...currentUser.following, user._id]
+        })
     }
 
     const handleUnfollow = () => {
         setFollowing(false);
+
+        usersClient.updateUser(currentUser._id, {
+            ...currentUser,
+            following: currentUser.following.filter((id) => id !== user._id)
+        })
     }
 
     return (
@@ -77,7 +87,7 @@ const Users = () => {
                                 <div className={"d-flex flex-row"}>
                                     <h1 className={"username-bold me-5"}>{username}</h1>
                                     {
-                                        (user._id === currentUser._id) &&
+                                        isOurAccount &&
                                         <>
                                             <button className={'btn btn-secondary edit-profile-button'}
                                                     onClick={() => navigate(`/users/edit/${userId}`)}>
@@ -90,7 +100,7 @@ const Users = () => {
                                         </>
                                     }
                                     {
-                                        (user._id !== currentUser._id) &&
+                                        !isOurAccount &&
                                         <>
                                             {following &&
                                                 <button className={'btn btn-secondary edit-profile-button'}
@@ -111,7 +121,7 @@ const Users = () => {
                             </div>
                             {/*<div className={"col-2"}>*/}
                             {/*    {*/}
-                            {/*        (user._id === currentUser._id) &&*/}
+                            {/*        isOurAccount &&*/}
                             {/*        <button className={'btn btn-secondary edit-profile-button ms-2'}*/}
                             {/*                onClick={() => {*/}
                             {/*                    navigate('/followers')*/}
@@ -143,7 +153,7 @@ const Users = () => {
 
                         {/*<div>*/}
                         {/*    {*/}
-                        {/*        (user._id === currentUser._id) &&*/}
+                        {/*        isOurAccount &&*/}
                         {/*        <>*/}
                         {/*            <h4>All your reviews</h4>*/}
                         {/*            <ReviewLargeDisplayer reviews={reviews}/>*/}
