@@ -19,6 +19,7 @@ const DetailsSidebar = ({editting = false, newReview = false, handleSave = null,
     const [canEdit, setCanEdit] = useState(false);
 
     useEffect(() => {
+
         const fetchReview = async () => {
             const response = await reviewsClient.findReviewById(reviewId);
             if (response) {

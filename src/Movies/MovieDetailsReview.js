@@ -6,15 +6,7 @@ import StarRating from "../StarRating";
 import {MdOutlineNotes} from "react-icons/md";
 
 const MovieDetailsReview = ({review}) => {
-    const {_id, userId, rating} = review;
-
-    const [user, setUser] = useState({});
-
-    useEffect(() => {
-        const user = db.users.find((user) => user._id === userId)
-        setUser(user);
-    }, []);
-
+    const {_id, user, rating} = review;
 
     return (
         <>

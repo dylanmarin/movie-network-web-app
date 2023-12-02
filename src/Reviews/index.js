@@ -43,7 +43,6 @@ const Reviews = ({editting}) => {
     useEffect(() => {
         const findReviewDetails = async (reviewId) => {
             const response = await reviewsClient.findReviewById(reviewId);
-            console.log(response)
 
             setReview(response)
             if (!response) {

@@ -10,7 +10,6 @@ import * as client from "./client";
 const MovieDetails = () => {
     const {movieId} = useParams();
     const [movie, setMovie] = useState({});
-    const [reviews, setReviews] = useState([]);
     const [credits, setCredits] = useState({});
 
     const IMAGE_URL_BASE = "https://image.tmdb.org/t/p/w500/";
@@ -25,11 +24,9 @@ const MovieDetails = () => {
         setCredits(credits)
     }
 
+
     useEffect(() => {
         fetchDetails(movieId);
-
-        const reviews = db.reviews.filter((review) => review.movieId === parseInt(movieId));
-        setReviews(reviews);
 
         fetchCredits(movieId);
     }, [movieId]);
@@ -84,7 +81,7 @@ const MovieDetails = () => {
 
 
                 <div className={"col-4"}>
-                    <DetailsSidebar movie={movie}/>
+                    <DetailsSidebar/>
                 </div>
             </div>
 

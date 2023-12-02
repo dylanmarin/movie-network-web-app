@@ -12,7 +12,7 @@ const usersSlice = createSlice({
             signedIn: (state) => !!state.loggedInUser,
             setLoggedInUser: (state, action) => {
                 state.loggedInUser = action.payload;
-                state.signedIn = true;
+                state.signedIn = !!action.payload;
             },
             logout: (state) => {
                 state.loggedInUser = null;

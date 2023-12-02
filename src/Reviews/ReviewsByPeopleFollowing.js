@@ -1,15 +1,37 @@
 import MovieDetailsReview from "../Movies/MovieDetailsReview";
 import {useSelector} from "react-redux";
-
+import * as reviewsClient from "./client";
+import {useEffect, useState} from "react";
+import * as followsClient from "../Followers/client";
 
 const ReviewsByPeopleFollowing = ({movieId}) => {
     const signedIn = useSelector((state) => state.usersReducer.signedIn);
+    const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
+    const [reviews, setReviews] = useState([]);
 
-    const reviews = [];
+    useEffect(() => {
+        const fetchReviews = async (movieId) => {
+
+            if (signedIn) {
+                const follows = await followsClient.findFollowedUsersByUser(loggedInUser._id);
+                const usersWeFollow = follows.map((follow) => follow.followed);
+                const userIdsWeFollow = usersWeFollow.map((user) => user._id);
+
+
+                const reviews = await reviewsClient.findAllReviews();
+
+                setReviews(reviews.filter((review) => review.movieId === parseInt(movieId)).filter((review) => userIdsWeFollow.includes(review.user._id)));
+            }
+        }
+
+
+        if (movieId) {
+            fetchReviews(movieId);
+        }
+    }, [movieId]);
 
     return (
         <div className={"following-reviews-list"}>
-
             <h2>Following</h2>
             {signedIn &&
                 <>

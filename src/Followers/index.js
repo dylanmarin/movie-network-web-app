@@ -28,8 +28,8 @@ const Followers = () => {
     return (
         <div className={""}>
             <h4>Your Followers:</h4>
-            {followersOfLoggedInUser.map((follower) =>
-                <Link to={`/users/${follower._id}`} className={"row mb-2"}>
+            {followersOfLoggedInUser.map((follower, i) =>
+                <Link key={i} to={`/users/${follower._id}`} className={"row mb-2"}>
                     <div className={"col-auto pe-0"}>
                         <FaUserCircle className={"fs-2"}/>
                     </div>
