@@ -27,16 +27,6 @@ const NewReview = () => {
 
     const handleSave = async () => {
         // save review changes
-        console.log({
-            user: loggedInUser._id,
-            movieId: movie.id,
-            movieTitle: movie.title,
-            posterURL: movie.poster_path,
-            movieReleaseDate: movie.release_date,
-            reviewText: reviewText,
-            rating: rating,
-            reviewDate: new Date().getTime()
-        })
         const response = await reviewsClient.createReview({
             user: loggedInUser._id,
             movieId: movie.id,

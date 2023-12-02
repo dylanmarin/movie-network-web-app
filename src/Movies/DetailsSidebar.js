@@ -13,20 +13,22 @@ import * as reviewsClient from "../Reviews/client";
 
 const DetailsSidebar = ({editting = false, newReview = false, handleSave = null, handleCancel = null}) => {
     const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
-    const signedIn = useSelector((state) => state.usersReducer.signedIn);
     const navigate = useNavigate();
     const {reviewId} = useParams();
     const {movieId} = useParams();
-    const [review, setReview] = useState({});
     const [canEdit, setCanEdit] = useState(false);
 
     useEffect(() => {
         const fetchReview = async () => {
             const response = await reviewsClient.findReviewById(reviewId);
-            setReview(response);
-
             if (response) {
-                setCanEdit(loggedInUser._id === response.user._id || loggedInUser.role === "ADMIN" || loggedInUser.role === "MODERATOR");
+                const canEdit = loggedInUser._id === response.user._id || loggedInUser.role === "ADMIN" || loggedInUser.role === "MODERATOR" || newReview;
+
+                if (editting && !canEdit) {
+                    navigate(`/reviews/${reviewId}`);
+                }
+
+                setCanEdit(canEdit);
             }
         }
 
@@ -39,22 +41,6 @@ const DetailsSidebar = ({editting = false, newReview = false, handleSave = null,
         }
     }, []);
 
-
-    const handleReviewButton = () => {
-        if (signedIn) {
-            navigate(`/movies/${movieId}/review`)
-        } else {
-            navigate("/signin")
-        }
-    }
-
-    const handleEditButton = () => {
-        navigate(`/reviews/${reviewId}/edit`)
-    }
-
-    const handleDeleteReview = () => {
-        navigate(`/users/${review.user}`)
-    }
 
     return (
         <div className={'details-sidebar'}>

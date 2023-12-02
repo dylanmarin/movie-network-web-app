@@ -15,14 +15,24 @@ const Reviews = ({editting}) => {
     const [review, setReview] = useState({});
     const navigate = useNavigate();
 
-    const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
-
     const IMAGE_URL_BASE = "https://image.tmdb.org/t/p/w500/";
     const validReviewId = reviewId.length === 24;
 
-    const handleSave = () => {
+    const handleSave = async () => {
         // save review changes
-        navigate(`/reviews/${reviewId}`)
+        const response = await reviewsClient.updateReview(review._id,
+            {
+                ...review,
+                reviewText: review.reviewText,
+                rating: review.rating
+            });
+
+        if (response.matchedCount > 0) {
+            navigate(`/reviews/${review._id}`)
+        } else {
+            alert("Something went wrong!")
+            navigate(`/reviews/${review._id}`)
+        }
     }
 
     const handleCancel = () => {
@@ -32,9 +42,11 @@ const Reviews = ({editting}) => {
 
     useEffect(() => {
         const findReviewDetails = async (reviewId) => {
-            const review = await reviewsClient.findReviewById(reviewId);
-            setReview(review)
-            if (!review) {
+            const response = await reviewsClient.findReviewById(reviewId);
+            console.log(response)
+
+            setReview(response)
+            if (!response) {
                 navigate("/home");
             }
         }
