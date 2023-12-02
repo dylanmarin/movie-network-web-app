@@ -10,6 +10,7 @@ import * as usersClient from "./client.js";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "./usersReducer";
 import * as followersClient from "../Followers/client";
+import * as reviewsClient from "../Reviews/client";
 
 
 const Users = () => {
@@ -40,9 +41,9 @@ const Users = () => {
             if (!user._id) {
                 navigate("/home");
             }
-            setUser(user);
-
             setIsOurAccount(currentUser && (currentUser._id === user._id));
+
+            setUser(user);
         }
 
         const initFollows = async () => {
@@ -54,9 +55,16 @@ const Users = () => {
             }
         }
 
+        const initReviews = async () => {
+            const reviews = await reviewsClient.findAllReviews();
+            reviews.sort((a, b) => new Date(b.reviewDate) - new Date(a.reviewDate));
+            setReviews(reviews.filter((review) => review.user._id === userId));
+        }
+
         if (validUserId) {
             initUsers();
             initFollows();
+            initReviews();
         } else {
             navigate("/home");
         }
