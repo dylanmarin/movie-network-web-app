@@ -27,15 +27,29 @@ const NewReview = () => {
 
     const handleSave = async () => {
         // save review changes
-        const response = await reviewsClient.createReview({
-            userId: loggedInUser._id,
+        console.log({
+            user: loggedInUser._id,
             movieId: movie.id,
+            movieTitle: movie.title,
+            posterURL: movie.poster_path,
+            movieReleaseDate: movie.release_date,
             reviewText: reviewText,
             rating: rating,
-            date: new Date().getTime()
+            reviewDate: new Date().getTime()
+        })
+        const response = await reviewsClient.createReview({
+            user: loggedInUser._id,
+            movieId: movie.id,
+            movieTitle: movie.title,
+            posterURL: movie.poster_path,
+            movieReleaseDate: movie.release_date,
+            reviewText: reviewText,
+            rating: rating,
+            reviewDate: new Date().getTime()
         });
 
-        if (response.movieId === movie.id) {
+
+        if (response._id) {
             navigate(`/reviews/${response._id}`)
         } else {
             alert("Something went wrong!")

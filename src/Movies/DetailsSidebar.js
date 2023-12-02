@@ -4,29 +4,41 @@ import {useNavigate} from "react-router-dom";
 import {useParams} from "react-router";
 import db from "../Database";
 import "./index.css";
+import {useSelector} from "react-redux";
+import ReviewsByPeopleFollowing from "../Reviews/ReviewsByPeopleFollowing";
+import AddReviewButton from "../Reviews/AddReviewButton";
+import EditReviewButton from "../Reviews/EditReviewButton";
+import DeleteReviewButton from "../Reviews/DeleteReviewButton";
+import * as reviewsClient from "../Reviews/client";
 
-const DetailsSidebar = ({movie, edit = false, newReview = false, handleSave = null, handleCancel = null}) => {
-    const [signedIn, setSignedIn] = useState(true);
+const DetailsSidebar = ({editting = false, newReview = false, handleSave = null, handleCancel = null}) => {
+    const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
+    const signedIn = useSelector((state) => state.usersReducer.signedIn);
     const navigate = useNavigate();
-    const [reviews, setReviews] = useState([]);
-    const [allowedToEdit, setAllowedToEdit] = useState(false);
     const {reviewId} = useParams();
-    const movieId = movie.id;
+    const {movieId} = useParams();
+    const [review, setReview] = useState({});
+    const [canEdit, setCanEdit] = useState(false);
 
     useEffect(() => {
-        // get signedIn
+        const fetchReview = async () => {
+            const response = await reviewsClient.findReviewById(reviewId);
+            setReview(response);
 
-        // fetch reviews by people you follow
-        const reviews = db.reviews.filter((review) => review.movieId === parseInt(movieId));
-        setReviews(reviews);
-
-        // check if this is being displayed on a review page
-        // if so, check if the current user is the author of the review
-        // if so, allow them to edit it
-        if (reviewId) {
-            setAllowedToEdit(true);
+            if (response) {
+                setCanEdit(loggedInUser._id === response.user._id || loggedInUser.role === "ADMIN" || loggedInUser.role === "MODERATOR");
+            }
         }
-    }, [movie]);
+
+        if (reviewId) {
+            if (reviewId.length === 24) {
+                fetchReview();
+            } else {
+                navigate("/home");
+            }
+        }
+    }, []);
+
 
     const handleReviewButton = () => {
         if (signedIn) {
@@ -41,39 +53,24 @@ const DetailsSidebar = ({movie, edit = false, newReview = false, handleSave = nu
     }
 
     const handleDeleteReview = () => {
-        navigate(`/users/${reviews.find((review) => review._id === parseInt(reviewId)).userId}`)
+        navigate(`/users/${review.user}`)
     }
 
     return (
         <div className={'details-sidebar'}>
             {
-                !newReview &&
-                <button
-                    onClick={handleReviewButton}
-                    className={"btn btn-secondary sidebar-button"}>
-                    {signedIn && "Add a Review"}
-                    {!signedIn && "Sign in to leave a Review!"}
-                </button>
+                !newReview && !editting && <AddReviewButton movieId={movieId}/>
             }
-
-            {allowedToEdit && !edit &&
+            {
+                canEdit && !editting &&
                 <>
-                    <button
-                        onClick={handleEditButton}
-                        className={"btn btn-secondary sidebar-button"}>
-                        Edit Review
-                    </button>
+                    <EditReviewButton reviewId={reviewId}/>
 
-                    <button
-                        onClick={handleDeleteReview}
-                        className={"btn btn-secondary sidebar-button"}>
-                        Delete Review
-                    </button>
+                    <DeleteReviewButton reviewId={reviewId}/>
                 </>
             }
-
             {
-                (edit || newReview) &&
+                (editting || newReview) &&
                 <>
                     <button
                         onClick={handleSave}
@@ -88,31 +85,9 @@ const DetailsSidebar = ({movie, edit = false, newReview = false, handleSave = nu
                 </>
             }
 
-
-            <div className={"following-reviews-list"}>
-
-                <h2>Following</h2>
-                {signedIn &&
-                    <>
-                        <p className={"m-0"}>Users you follow who have seen this film</p>
-
-                        <div className={"following-reviews-list-item"}>
-                            {reviews.map((review) =>
-                                <MovieDetailsReview key={review._id} review={review}/>
-                            )}
-                        </div>
-                    </>
-                }
-
-                {!signedIn &&
-                    <>
-                        <p className={"m-0"}>Sign in to see reviews by people you follow!</p>
-                    </>
-                }
-            </div>
+            <ReviewsByPeopleFollowing movieId={movieId}/>
         </div>
-    )
-        ;
+    );
 }
 
 export default DetailsSidebar;

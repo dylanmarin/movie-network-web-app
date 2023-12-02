@@ -33,8 +33,8 @@ function App() {
                                 <Route path="/users/edit/:userId" element={<EditUsers/>}/>
                                 <Route path="/movies/:movieId" element={<MovieDetails/>}/>
                                 <Route path={"/movies/:movieId/review"} element={<NewReview/>}/>
-                                <Route path={"/reviews/:reviewId"} element={<Reviews edit={false}/>}/>
-                                <Route path={"/reviews/:reviewId/edit"} element={<Reviews edit={true}/>}/>
+                                <Route path={"/reviews/:reviewId"} element={<Reviews editting={false}/>}/>
+                                <Route path={"/reviews/:reviewId/edit"} element={<Reviews editting={true}/>}/>
                                 <Route path={"/search"} element={<Search/>}/>
                                 <Route path={"/search/:searchText"} element={<Search/>}/>
                                 <Route path={"/signin"} element={<SignIn/>}/>

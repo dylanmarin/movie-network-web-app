@@ -1,6 +1,6 @@
 import "./index.css"
 import * as usersClient from "../Users/client.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setLoggedInUser} from "../Users/usersReducer";
@@ -31,6 +31,13 @@ const SignIn = () => {
             alert("Username taken")
         }
     }
+
+    const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
+    useEffect(() => {
+        if (loggedInUser) {
+            navigate(`/users/${loggedInUser._id}`)
+        }
+    }, []);
 
     return (
         <div className={"text-center"}>
