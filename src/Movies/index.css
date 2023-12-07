@@ -1,5 +1,5 @@
 .movie-poster {
-    width: 100%;
+    max-width: 240px;
 }
 
 .details-sidebar {

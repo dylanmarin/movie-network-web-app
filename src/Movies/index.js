@@ -44,7 +44,7 @@ const MovieDetails = () => {
                 <div className={"col"}>
                     <div className={"row"}>
 
-                        <div className={"col-4"}>
+                        <div className={"col-4 d-none d-md-block"}>
                             <img src={`${IMAGE_URL_BASE}${poster_path}`} alt={"poster"}
                                  className={"movie-poster"}/>
                         </div>

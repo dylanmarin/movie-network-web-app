@@ -111,17 +111,17 @@ const EditUsers = () => {
                 <div className={"row"}>
                     <div className={"col-8"}>
                         <div className={"row"}>
-                            <div id={'profile-photo-username'} className={"col-auto text-center"}>
+                            <div id={'profile-photo-username'} className={"col-sm-auto text-center"}>
                                 <>
                                     {photoURL && <img src={photoURL} alt={"profile-photo"}
                                                       className={"profile-photo d-block"}/>}
-                                    {!photoURL && <FaCircleUser size={90} className={'d-block'}/>}
+                                    {!photoURL && <FaCircleUser size={90} className={'d-block mx-auto'}/>}
                                 </>
                                 <a className={"mx-auto"}>Edit Photo</a>
                             </div>
 
 
-                            <div className={"col edit-profile-forms"}>
+                            <div className={"col-sm edit-profile-forms"}>
                                 <label htmlFor={"username"}>Username</label>
                                 <input id={"username"} className={"form-control"} placeholder={"username"}
                                        value={username}
@@ -148,7 +148,7 @@ const EditUsers = () => {
                         </div>
                     </div>
 
-                    <div className={"col mt-0"}>
+                    <div className={"col-auto mt-0"}>
                         <button className={"btn btn-secondary edit-profile-button mx-1"} onClick={handleSave}>save
                         </button>
                         <button className={"btn btn-secondary edit-profile-button mx-1"} onClick={handleCancel}>cancel

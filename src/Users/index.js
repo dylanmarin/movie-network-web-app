@@ -171,7 +171,7 @@ const Users = () => {
                                     </button>
                                 }
                             </div>
-                            <div className={"col-4"}>
+                            <div className={"col-4 d-none d-lg-block"}>
                                 <h2>Following:</h2>
                                 <UsersFollowing/>
                             </div>

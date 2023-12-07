@@ -7,3 +7,7 @@
 .user-search-stub a:hover h6 {
     text-decoration: underline !important;
 }
+
+.searchbar-input {
+    width: 250px !important;
+}
