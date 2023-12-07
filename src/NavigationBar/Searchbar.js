@@ -1,7 +1,6 @@
 import "./index.css";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {useParams} from "react-router";
 
 const Searchbar = () => {
     const [searchString, setSearchString] = useState("");
