@@ -5,9 +5,7 @@ import DetailsSidebar from "../Movies/DetailsSidebar";
 import "./index.css"
 import {Link, useNavigate} from "react-router-dom";
 import StarRating from "../StarRating";
-import {useSelector} from "react-redux";
 import * as reviewsClient from "./client";
-import {findReviewById} from "./client";
 
 
 const Reviews = ({editting}) => {
@@ -39,7 +37,6 @@ const Reviews = ({editting}) => {
         navigate(`/reviews/${reviewId}`)
     }
 
-
     useEffect(() => {
         const findReviewDetails = async (reviewId) => {
             const response = await reviewsClient.findReviewById(reviewId);
@@ -68,10 +65,10 @@ const Reviews = ({editting}) => {
                     <div className={"col"}>
                         <div className={"row"}>
 
-                            <div className={"col-4"}>
+                            <div className={"col-4 mb-3 poster-container"}>
                                 <Link to={`/movies/${movieId}`}>
                                     <img src={`${IMAGE_URL_BASE}${posterURL}`} alt={"poster"}
-                                         className={"movie-poster"}/>
+                                         className={"w-100"}/>
                                 </Link>
                             </div>
 
@@ -99,11 +96,10 @@ const Reviews = ({editting}) => {
                                                 setReview({...review, rating: e.target.value})
                                             }}/>
                                         </div>
-
                                     }
                                 </div>
 
-                                <div className={""}>
+                                <div className={"mb-3"}>
                                     {
                                         !editting &&
                                         <p className={"m-0"}>{review.reviewText}</p>
@@ -124,7 +120,7 @@ const Reviews = ({editting}) => {
                     </div>
 
 
-                    <div className={"col-4"}>
+                    <div className={"col-lg-4"}>
                         <DetailsSidebar editting={editting} handleCancel={handleCancel} handleSave={handleSave}/>
                     </div>
 

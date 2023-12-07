@@ -9,7 +9,7 @@ const UserSearchStub = ({user}) => {
             <Link to={`/users/${user._id}`}>
                 <div className={"row"}>
 
-                    <div className={"col-3 text-center"}>
+                    <div className={"col-auto text-center"}>
 
                         <FaUserCircle className={"fs-1"}/>
                         <h6>{user.username}</h6>

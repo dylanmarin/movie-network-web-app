@@ -66,7 +66,7 @@ const NewReview = () => {
                 <div className={"col"}>
                     <div className={"row"}>
 
-                        <div className={"col-4"}>
+                        <div className={"col-4 d-none d-md-block poster-container"}>
                             <Link to={`/movies/${movie.id}`}>
                                 <img src={`${IMAGE_URL_BASE}${poster_path}`} alt={"poster"}
                                      className={"movie-poster"}/>
@@ -96,7 +96,7 @@ const NewReview = () => {
                                 </div>
                             </div>
 
-                            <div className={""}>
+                            <div className={"mb-3"}>
                                     <textarea className={"form-control"} rows={3}
                                               value={reviewText}
                                               onChange={(e) => {
@@ -112,7 +112,7 @@ const NewReview = () => {
                 </div>
 
 
-                <div className={"col-4"}>
+                <div className={"col-md-4"}>
                     <DetailsSidebar movie={movie} newReview={true} handleCancel={handleCancel} handleSave={handleSave}/>
                 </div>
 

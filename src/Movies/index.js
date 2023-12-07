@@ -43,8 +43,7 @@ const MovieDetails = () => {
             <div className={"row"}>
                 <div className={"col"}>
                     <div className={"row"}>
-
-                        <div className={"col-4 d-none d-md-block"}>
+                        <div className={"col-4 d-none d-lg-block poster-container"}>
                             <img src={`${IMAGE_URL_BASE}${poster_path}`} alt={"poster"}
                                  className={"movie-poster"}/>
                         </div>
@@ -77,7 +76,7 @@ const MovieDetails = () => {
                                 <h4>
                                     Production Companies
                                 </h4>
-                                <div className={"list-group"}>
+                                <div className={"list-group my-2"}>
                                     {movie.production_companies &&
                                         movie.production_companies.map((company) => (
                                             <Link className={"list-group-item"} key={company.id}
@@ -99,7 +98,7 @@ const MovieDetails = () => {
                 </div>
 
 
-                <div className={"col-4"}>
+                <div className={"col-lg-4"}>
                     <DetailsSidebar/>
                 </div>
             </div>

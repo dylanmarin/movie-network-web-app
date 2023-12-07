@@ -27,6 +27,9 @@ function App() {
                 <HashRouter>
                     <div className={"h-100"}>
                         <NavigationBar/>
+                        <Routes>
+                            <Route path={"/signin"} element={<SignIn/>}/>
+                        </Routes>
                         <div className={"main-content"}>
                             <Routes>
                                 <Route path="/" element={<Navigate to="/home"/>}/>
@@ -39,7 +42,6 @@ function App() {
                                 <Route path={"/reviews/:reviewId/edit"} element={<Reviews editting={true}/>}/>
                                 <Route path={"/search"} element={<Search/>}/>
                                 <Route path={"/search/:searchText"} element={<Search/>}/>
-                                <Route path={"/signin"} element={<SignIn/>}/>
                                 <Route path={"/followers"} element={<Followers/>}/>
                                 <Route path={"/admin"} element={<Admin/>}/>
                                 <Route path={"/companies"} element={<Navigate to={"/home"}/>}/>

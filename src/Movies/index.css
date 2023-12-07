@@ -1,4 +1,8 @@
 .movie-poster {
+    max-width: 100%;
+}
+
+.poster-container {
     max-width: 240px;
 }
 

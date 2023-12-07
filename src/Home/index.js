@@ -48,7 +48,7 @@ const Home = () => {
             }
             {
                 signedIn && userIdsWeFollow.length === 0 &&
-                <h4>Follow some people to see their reviews here!</h4>
+                <h4>Follow some people to see their reviews here, {loggedInUser.username}!</h4>
             }
         </div>
     );

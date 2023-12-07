@@ -3,3 +3,12 @@
 .form-range {
     width: 130px;
 }
+
+
+.poster-container {
+    max-width: 240px !important;
+}
+
+.movie-poster {
+    max-width: 100%;
+}

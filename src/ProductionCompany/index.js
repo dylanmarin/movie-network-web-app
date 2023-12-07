@@ -27,23 +27,17 @@ const ProductionCompany = () => {
         fetchMoviesByCompany(companyId);
     }, [companyId]);
 
-    console.log(companyDetails)
-
     return (
 
         <div className={"movie-details"}>
             <div className={"row"}>
                 <div className={"col"}>
                     <div className={"row"}>
-                        <div className={"col-4"}>
+                        <div className={"col-md-4"}>
                             <img src={`${IMAGE_URL_BASE}${companyDetails.logo_path}`} alt={"poster"}
                                  className={"movie-poster"}/>
-
-
-
-
                         </div>
-                        <div className={"col"}>
+                        <div className={"col-md"}>
 
                             <div className={"mb-3"}>
 

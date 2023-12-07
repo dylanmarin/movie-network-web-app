@@ -18,6 +18,10 @@ const DetailsSidebar = ({editting = false, newReview = false, handleSave = null,
     const {movieId} = useParams();
     const [canEdit, setCanEdit] = useState(false);
 
+    const [review, setReview] = useState({});
+
+
+
     useEffect(() => {
 
         const fetchReview = async () => {
@@ -30,6 +34,8 @@ const DetailsSidebar = ({editting = false, newReview = false, handleSave = null,
                 }
 
                 setCanEdit(canEdit);
+
+                setReview(response);
             }
         }
 
@@ -40,13 +46,12 @@ const DetailsSidebar = ({editting = false, newReview = false, handleSave = null,
                 navigate("/home");
             }
         }
-    }, []);
-
+    }, [movieId, reviewId]);
 
     return (
         <div className={'details-sidebar'}>
             {
-                !newReview && !editting && <AddReviewButton movieId={movieId}/>
+                !newReview && !editting && <AddReviewButton movieId={review.movieId || movieId}/>
             }
             {
                 canEdit && !editting &&

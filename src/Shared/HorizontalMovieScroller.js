@@ -1,4 +1,3 @@
-import MovieReviewStub from "../Users/MovieReviewStub";
 import MovieStubSimple from "./MovieStubSimple";
 
 const HorizontalMovieScroller = ({movies}) => {
@@ -6,7 +5,6 @@ const HorizontalMovieScroller = ({movies}) => {
     return (
         <div className={"movie-scroller-container"}>
             <div className={"movie-scroller"}>
-
                 {
                     movies.map((movie, i) =>
                         <MovieStubSimple key={i} movie={movie}/>
