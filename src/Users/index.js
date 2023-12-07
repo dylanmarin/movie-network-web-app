@@ -23,7 +23,7 @@ const Users = () => {
     const [following, setFollowing] = useState(false);
 
     const currentUser = useSelector((state) => state.usersReducer.loggedInUser);
-
+    const isAdmin = currentUser && (currentUser.role === "ADMIN");
 
     const isFollowing = (followers) => {
         if (currentUser) {
@@ -115,19 +115,23 @@ const Users = () => {
 
                                 <div className={"d-flex flex-row"}>
                                     <h1 className={"username-bold me-5"}>{username}</h1>
-                                    {
-                                        isOurAccount &&
-                                        <>
-                                            <button className={'btn btn-secondary edit-profile-button'}
+                                    <>
+                                        {
+                                            (isOurAccount || isAdmin) &&
+                                            <button className={'btn btn-secondary edit-profile-button mx-1'}
                                                     onClick={() => navigate(`/users/edit/${userId}`)}>
                                                 edit profile
                                             </button>
-                                            <button className={'btn btn-secondary edit-profile-button ms-2'}
+                                        }
+                                        {isOurAccount &&
+                                            <button className={'btn btn-secondary edit-profile-button mx-1'}
                                                     onClick={handleSignOut}>
                                                 sign out
                                             </button>
-                                        </>
-                                    }
+                                        }
+
+                                    </>
+
                                     {currentUser && (
                                         !isOurAccount &&
                                         <>

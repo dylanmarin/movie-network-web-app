@@ -8,6 +8,7 @@ import {setLoggedInUser} from "../Users/usersReducer";
 const SignIn = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [role, setRole] = useState("USER");
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const SignIn = () => {
     }
 
     const submitCreateAccount = async () => {
-        const response = await usersClient.signup({username, password})
+        const response = await usersClient.signup({username, password, role: role})
         if (response) {
             dispatch(setLoggedInUser(response));
             navigate(`/users/${response._id}`)
@@ -31,6 +32,7 @@ const SignIn = () => {
             alert("Username taken")
         }
     }
+
 
     const loggedInUser = useSelector((state) => state.usersReducer.loggedInUser);
     useEffect(() => {
@@ -56,7 +58,15 @@ const SignIn = () => {
                     <button className={"btn btn-secondary w-100 m-1"}>Sign In</button>
                 </form>
 
-                <button className={"btn btn-secondary w-100 m-1"} onClick={submitCreateAccount}>Create Account</button>
+                <div className={"row"}>
+                    <button className={"btn btn-secondary m-1 col"} onClick={submitCreateAccount}>Create Account
+                    </button>
+                    <select className={"form-select m-1 col"} onChange={(e) => setRole(e.target.value)}>
+                        <option>USER</option>
+                        <option>MODERATOR</option>
+                        <option>ADMIN</option>
+                    </select>
+                </div>
 
             </div>
 

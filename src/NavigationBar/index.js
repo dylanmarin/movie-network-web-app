@@ -78,6 +78,14 @@ const NavigationBar = () => {
 
                                 </li>
                             }
+
+                            {signedIn && loggedInUser && loggedInUser.role === "ADMIN" &&
+                                <li className="nav-item">
+                                    <Link to={"/admin"} className={"navbar-text nav-link movie-navbar-item"}>
+                                        ADMIN CONTROLS
+                                    </Link>
+                                </li>
+                            }
                         </ul>
                         <Searchbar/>
                         {/*<form className="d-flex" role="search">*/}

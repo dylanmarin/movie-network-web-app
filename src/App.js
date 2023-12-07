@@ -17,6 +17,7 @@ import Followers from "./Followers";
 import {Provider} from "react-redux";
 import store from "./store";
 import CurrentUser from "./Users/currentUser";
+import Admin from "./Admin";
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                                 <Route path={"/search/:searchText"} element={<Search/>}/>
                                 <Route path={"/signin"} element={<SignIn/>}/>
                                 <Route path={"/followers"} element={<Followers/>}/>
+                                <Route path={"/admin"} element={<Admin/>}/>
                             </Routes>
                         </div>
                     </div>

@@ -12,6 +12,7 @@ const EditUsers = () => {
     const [user, setUser] = useState({});
     const navigate = useNavigate();
     const loggedInUser = useSelector(state => state.usersReducer.loggedInUser);
+    const [originalUser, setOriginalUser] = useState({});
 
     const allowedToEdit = (loggedInUser && (userId === loggedInUser._id || loggedInUser.role === "ADMIN"));
     const validUserId = userId.length === 24;
@@ -19,8 +20,10 @@ const EditUsers = () => {
     useEffect(() => {
         const getUserInfo = async () => {
             const user = await usersClient.findUserById(userId);
+            setOriginalUser(user);
             setUser(user);
         }
+
 
         if (validUserId && allowedToEdit) {
             getUserInfo();
@@ -33,39 +36,47 @@ const EditUsers = () => {
 
     const handleSave = async () => {
         // validate username
-        if (username !== loggedInUser.username) {
-            const allUsers = await usersClient.findAllUsers();
-            const usernameTaken = allUsers.some((user) => user.username === username);
+        // if username was changed
+        if (username !== originalUser.username) {
+            // if username is not the same as the logged in user or the logged in user is not an admin
+            if (username !== loggedInUser.username && loggedInUser.role !== "ADMIN") {
+                const allUsers = await usersClient.findAllUsers();
+                const usernameTaken = allUsers.some((user) => user.username === username);
 
-            if (usernameTaken) {
-                alert("username taken");
-                return;
-            }
+                if (usernameTaken) {
+                    alert("username taken");
+                    return;
+                }
 
-            const usernameLongEnough = username.length > 3;
+                const usernameLongEnough = username.length > 3;
 
-            if (!usernameLongEnough) {
-                alert("username must be at least 4 characters");
-                return;
+                if (!usernameLongEnough) {
+                    alert("username must be at least 4 characters");
+                    return;
+                }
             }
         }
 
 
         // validate email
-        if (email !== loggedInUser.email) {
-            const validEmail = user.email.includes("@") && user.email.includes(".") || user.email === "";
-            if (!validEmail) {
-                alert("invalid email, must contain @ and .");
-                return;
+        if (email !== originalUser.email) {
+            if (email !== loggedInUser.email) {
+                const validEmail = user.email.includes("@") && user.email.includes(".") || user.email === "";
+                if (!validEmail) {
+                    alert("invalid email, must contain @ and .");
+                    return;
+                }
             }
         }
 
         // validate password
-        if (password !== loggedInUser.password) {
-            const validPassword = user.password.length > 5;
-            if (!validPassword) {
-                alert("password must be at least 6 characters");
-                return;
+        if (password !== originalUser.password) {
+            if (password !== loggedInUser.password) {
+                const validPassword = user.password.length > 5;
+                if (!validPassword) {
+                    alert("password must be at least 6 characters");
+                    return;
+                }
             }
         }
 
@@ -126,7 +137,10 @@ const EditUsers = () => {
                                 <label htmlFor={"email"}>Email</label>
                                 <input id={"email"} className={"form-control"} placeholder={"email"} value={email}
                                        onChange={(e) => setUser({...user, "email": e.target.value})}/>
-                                <label htmlFor={"bio"}>Bio ({bio.length}/140)</label>
+                                <label htmlFor={"bio"}>Bio (
+                                    {bio && bio.length}
+                                    {!bio && 0}
+                                    /140)</label>
                                 <textarea id={"bio"} className={"form-control"} placeholder={"bio"} value={bio}
                                           onChange={(e) => setUser({...user, "bio": e.target.value})}/>
                             </div>
