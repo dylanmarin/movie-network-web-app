@@ -18,6 +18,7 @@ import {Provider} from "react-redux";
 import store from "./store";
 import CurrentUser from "./Users/currentUser";
 import Admin from "./Admin";
+import ProductionCompany from "./ProductionCompany";
 
 function App() {
     return (
@@ -41,6 +42,8 @@ function App() {
                                 <Route path={"/signin"} element={<SignIn/>}/>
                                 <Route path={"/followers"} element={<Followers/>}/>
                                 <Route path={"/admin"} element={<Admin/>}/>
+                                <Route path={"/companies"} element={<Navigate to={"/home"}/>}/>
+                                <Route path={"/companies/:companyId"} element={<ProductionCompany/>}/>
                             </Routes>
                         </div>
                     </div>

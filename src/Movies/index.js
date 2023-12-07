@@ -6,6 +6,7 @@ import MovieDetailsReview from "./MovieDetailsReview";
 import DetailsSidebar from "./DetailsSidebar";
 import SimilarFilms from "./SimilarFilms";
 import * as client from "./client";
+import {Link} from "react-router-dom";
 
 const MovieDetails = () => {
     const {movieId} = useParams();
@@ -73,6 +74,24 @@ const MovieDetails = () => {
                                     Written
                                     by: {crew && crew.filter((member) => member.job === "Writer").map((member) => member.name).join(", ")}
                                 </p>
+                                <h4>
+                                    Production Companies
+                                </h4>
+                                <div className={"list-group"}>
+                                    {movie.production_companies &&
+                                        movie.production_companies.map((company) => (
+                                            <Link className={"list-group-item"} key={company.id}
+                                                  to={`/companies/${company.id}`}>
+                                                {company.logo_path &&
+
+                                                    <img src={`${IMAGE_URL_BASE}${company.logo_path}`} alt={"logo"}
+                                                         className={'company-logo me-3'}/>
+                                                }
+                                                {company.name}
+                                            </Link>
+                                        ))
+                                    }
+                                </div>
                             </div>
 
                         </div>
