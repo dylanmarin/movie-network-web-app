@@ -23,8 +23,8 @@ import ProductionCompany from "./ProductionCompany";
 function App() {
     return (
         <Provider store={store}>
-            <CurrentUser>
-                <HashRouter>
+            <HashRouter>
+                <CurrentUser>
                     <div className={"h-100"}>
                         <NavigationBar/>
                         <div className={"main-content"}>
@@ -47,8 +47,8 @@ function App() {
                             </Routes>
                         </div>
                     </div>
-                </HashRouter>
-            </CurrentUser>
+                </CurrentUser>
+            </HashRouter>
         </Provider>
     );
 }
