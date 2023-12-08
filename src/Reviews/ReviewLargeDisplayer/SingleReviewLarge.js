@@ -8,7 +8,7 @@ const SingleReviewLarge = ({review}) => {
     return (
         <>
             {review &&
-                <div className={"p-2"}>
+                <div className={"p-1"}>
                     <Link to={`/reviews/${review._id}`} className={"review-large-displayer row"}>
                         <div className={"review-large-displayer row"}>
                             <div className={"col-auto poster-container-small"}>
@@ -18,11 +18,12 @@ const SingleReviewLarge = ({review}) => {
 
                             <div className={"col"}>
                                 <div className={"my-3"}>
-                                    <h5 className={"movie-title m-0"}>{review.movieTitle}</h5>
-                                    <span className={"fs-2"}>
-                            <StarRating rating={review.rating}/>
-                            </span>
-                                    <p className={"review-text"}>{review.reviewText}</p>
+                                    <h4 className={"movie-title m-0"}>{review.movieTitle}</h4>
+                                    <h5 className={"mb-1 d-inline"}>{review.user.username} rated it:     </h5>
+                                    <span className={"fs-3"}>
+                                        <StarRating rating={review.rating}/>
+                                    </span>
+                                    <p className={"review-text ms-2"}>{review.reviewText}</p>
                                 </div>
                             </div>
                         </div>

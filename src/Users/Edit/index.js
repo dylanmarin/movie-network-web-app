@@ -111,7 +111,7 @@ const EditUsers = () => {
                 <div className={"row"}>
                     <div className={"col-8"}>
                         <div className={"row"}>
-                            <div id={'profile-photo-username'} className={"col-sm-auto text-center"}>
+                            <div id={'profile-photo-username'} className={"col-md-auto text-center"}>
                                 <>
                                     {photoURL && <img src={photoURL} alt={"profile-photo"}
                                                       className={"profile-photo d-block"}/>}
@@ -149,9 +149,9 @@ const EditUsers = () => {
                     </div>
 
                     <div className={"col-auto mt-0"}>
-                        <button className={"btn cin-btn-secondary edit-profile-button mx-1"} onClick={handleSave}>save
+                        <button className={"btn cin-btn-secondary mx-1"} onClick={handleSave}>save
                         </button>
-                        <button className={"btn cin-btn-secondary edit-profile-button mx-1"} onClick={handleCancel}>cancel
+                        <button className={"btn cin-btn-secondary mx-1"} onClick={handleCancel}>cancel
                         </button>
                     </div>
                 </div>

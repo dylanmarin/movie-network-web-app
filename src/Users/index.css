@@ -2,7 +2,7 @@
     overflow-x: scroll;
     display: flex;
     flex-direction: row;
-
+    border-radius: 30px;
     background-color: #F5F5F5;
     padding: 20px;
     margin-bottom: 20px;
@@ -42,16 +42,6 @@
     font-weight: lighter;
 }
 
-.edit-profile-button {
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 4px 8px !important;
-    margin-top: auto !important;
-    margin-bottom: auto !important;
-    height: fit-content !important;
-    background-color: var(--dark-grey) !important;
-    color: var(--primary-text-color) !important;
-}
 
 .edit-profile-forms input {
     border-radius: 0;
@@ -62,4 +52,8 @@
 .edit-profile-forms textarea {
     border-radius: 0;
     margin-bottom: 10px;
+}
+
+.cin-link-underline {
+    text-decoration: underline !important;
 }

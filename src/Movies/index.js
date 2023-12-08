@@ -1,13 +1,11 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
-import db from "../Database"
 import "./index.css"
-import MovieDetailsReview from "./MovieDetailsReview";
 import DetailsSidebar from "./DetailsSidebar";
 import SimilarFilms from "./SimilarFilms";
 import * as client from "./client";
 import {Link, useNavigate} from "react-router-dom";
-import navigationBar from "../NavigationBar";
+import noPoster from "../Images/No-Poster.jpg";
 
 const MovieDetails = () => {
     const {movieId} = useParams();
@@ -50,8 +48,17 @@ const MovieDetails = () => {
                 <div className={"col"}>
                     <div className={"row"}>
                         <div className={"col-4 d-none d-lg-block poster-container"}>
-                            <img src={`${IMAGE_URL_BASE}${poster_path}`} alt={"poster"}
-                                 className={"movie-poster"}/>
+
+                            {
+                                poster_path &&
+                                <img src={`${IMAGE_URL_BASE}${poster_path}`} alt={"poster"}
+                                     className={"movie-poster"}/>
+                            }
+                            {
+                                !poster_path &&
+                                <img src={noPoster} alt={"poster"}
+                                     className={"movie-poster"}/>
+                            }
                         </div>
 
                         <div className={"col"}>
@@ -100,7 +107,7 @@ const MovieDetails = () => {
                                             <h4>
                                                 Production Companies
                                             </h4>
-                                            <div className={"list-group my-2"}>
+                                            <div className={"list-group my-2 fit-content"}>
                                                 {movie.production_companies.map((company) =>
                                                     <Link className={"list-group-item"} key={company.id}
                                                           to={`/companies/${company.id}`}>

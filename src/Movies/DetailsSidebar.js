@@ -21,7 +21,6 @@ const DetailsSidebar = ({editting = false, newReview = false, handleSave = null,
     const [review, setReview] = useState({});
 
 
-
     useEffect(() => {
 
         const fetchReview = async () => {
@@ -77,7 +76,7 @@ const DetailsSidebar = ({editting = false, newReview = false, handleSave = null,
                 </>
             }
 
-            <ReviewsByPeopleFollowing movieId={movieId}/>
+            <ReviewsByPeopleFollowing movieId={review.movieId || movieId} currentReviewId={review._id || -1}/>
         </div>
     );
 }

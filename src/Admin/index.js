@@ -54,8 +54,7 @@ const Admin = () => {
                         </Link>
                         {
                             (user._id !== loggedInUser._id) &&
-
-                            <button className={"btn btn-danger float-end"} onClick={() => {
+                            <button className={"btn cin-btn-danger float-end"} onClick={() => {
                                 handleDelete(user._id)
                             }}>Delete
                             </button>

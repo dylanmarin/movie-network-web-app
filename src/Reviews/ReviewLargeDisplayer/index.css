@@ -1,9 +1,16 @@
 
 .reviews-list {
     background-color: var(--light-grey);
+    border-radius: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .poster-container-small {
     max-width: 180px !important;
 }
 
+
+.poster-container-small img {
+    border-radius: 5px;
+}

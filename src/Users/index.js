@@ -136,13 +136,13 @@ const Users = () => {
                                         !isOurAccount &&
                                         <>
                                             {(following) &&
-                                                <button className={'btn cin-btn-secondary edit-profile-button'}
+                                                <button className={'btn cin-btn-secondary ms-2'}
                                                         onClick={handleUnfollow}>
                                                     unfollow
                                                 </button>
                                             }
                                             {(!following) &&
-                                                <button className={'btn cin-btn-secondary edit-profile-button ms-2'}
+                                                <button className={'btn cin-btn-secondary ms-2'}
                                                         onClick={handleFollow}>
                                                     follow
                                                 </button>
@@ -151,8 +151,8 @@ const Users = () => {
                                     )
                                     }
                                     {!currentUser &&
-                                        <button className={'btn cin-btn-secondary edit-profile-button ms-2'}
-                                                disabled={true}>
+                                        <button className={'btn cin-btn-secondary ms-2'}
+                                                onClick={() => navigate('/signin')}>
                                             sign in to follow users
                                         </button>
                                     }
@@ -181,15 +181,23 @@ const Users = () => {
 
                         <div>
                             <h4>Recently watched by {username}</h4>
-                            <div className={"reviewed-movies"}>
-                                {
-                                    reviews.map((review) =>
-                                        <>
-                                            <MovieReviewStub review={review}/>
-                                        </>
-                                    )
-                                }
-                            </div>
+
+                            {
+                                reviews.length === 0 &&
+                                <p>Review some movies for them to show up here to other people!</p>
+                            }
+                            {
+                                reviews.length > 0 &&
+                                <div className={"reviewed-movies"}>
+                                    {
+                                        reviews.map((review) =>
+                                            <>
+                                                <MovieReviewStub review={review}/>
+                                            </>
+                                        )
+                                    }
+                                </div>
+                            }
                         </div>
 
                         <div>
@@ -197,7 +205,15 @@ const Users = () => {
                                 isOurAccount &&
                                 <>
                                     <h4>All your reviews</h4>
-                                    <ReviewLargeDisplayer reviews={reviews}/>
+                                    {
+                                        reviews.length === 0 &&
+                                        <p>You haven't reviewed any movies yet! When you do, you'll be able to see all
+                                            of them here.</p>
+                                    }
+                                    {
+                                        reviews.length > 0 &&
+                                        <ReviewLargeDisplayer reviews={reviews}/>
+                                    }
                                 </>
                             }
                         </div>

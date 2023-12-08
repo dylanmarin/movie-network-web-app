@@ -16,6 +16,11 @@
     background-color: #F5F5F5;
     padding: 20px;
     margin-bottom: 20px;
+    border-radius: 30px;
+}
+
+#scrollButton {
+    margin: 40px 5px !important;
 }
 
 .movie-scroller {
@@ -34,10 +39,12 @@
 .movie-grid-container {
     background-color: #F5F5F5;
     justify-content: space-between;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 30px;
 }
 
-.poster-wrapper{
+.poster-wrapper {
     width: 140px;
     height: 210px;
 }
