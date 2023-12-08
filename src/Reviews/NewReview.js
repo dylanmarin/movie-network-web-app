@@ -22,6 +22,11 @@ const NewReview = () => {
 
     const fetchMovieById = async (movieId) => {
         const movie = await client.getMovieDetails(movieId)
+
+        if (!movie) {
+            navigate("/home")
+        }
+
         setMovie(movie)
     }
 

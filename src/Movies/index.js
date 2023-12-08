@@ -6,7 +6,8 @@ import MovieDetailsReview from "./MovieDetailsReview";
 import DetailsSidebar from "./DetailsSidebar";
 import SimilarFilms from "./SimilarFilms";
 import * as client from "./client";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import navigationBar from "../NavigationBar";
 
 const MovieDetails = () => {
     const {movieId} = useParams();
@@ -14,9 +15,14 @@ const MovieDetails = () => {
     const [credits, setCredits] = useState({});
 
     const IMAGE_URL_BASE = "https://image.tmdb.org/t/p/w500/";
+    const navigte = useNavigate();
 
     const fetchDetails = async (movieId) => {
         const movie = await client.getMovieDetails(movieId)
+        if (!movie) {
+            navigte("/home")
+        }
+
         setMovie(movie)
     }
 
@@ -60,38 +66,58 @@ const MovieDetails = () => {
                                 <p className={"mt-0"}>{overview}</p>
                             </div>
 
-                            <div>
-                                <h3 className={""}>Movie Details</h3>
-                                <p>
-                                    Starring: {cast && topCast.map((actor) => actor.name).join(", ")}
-                                </p>
-                                <p>
-                                    Directed
-                                    by: {crew && crew.filter((member) => member.job === "Director").map((member) => member.name).join(", ")}
-                                </p>
-                                <p>
-                                    Written
-                                    by: {crew && crew.filter((member) => member.job === "Writer").map((member) => member.name).join(", ")}
-                                </p>
-                                <h4>
-                                    Production Companies
-                                </h4>
-                                <div className={"list-group my-2"}>
-                                    {movie.production_companies &&
-                                        movie.production_companies.map((company) => (
-                                            <Link className={"list-group-item"} key={company.id}
-                                                  to={`/companies/${company.id}`}>
-                                                {company.logo_path &&
+                            {
+                                cast && crew &&
+                                <div>
+                                    <h3 className={""}>Movie Details</h3>
 
-                                                    <img src={`${IMAGE_URL_BASE}${company.logo_path}`} alt={"logo"}
-                                                         className={'company-logo me-3'}/>
-                                                }
-                                                {company.name}
-                                            </Link>
-                                        ))
+                                    {cast &&
+                                        <p>
+                                            Starring: {cast && topCast.map((actor) => actor.name).join(", ")}
+                                        </p>
+                                    }
+
+                                    {crew &&
+                                        <>
+                                            {
+                                                crew && crew.filter((member) => member.job === "Director").length > 0 &&
+                                                <p>
+                                                    Directed
+                                                    by: {crew && crew.filter((member) => member.job === "Director").map((member) => member.name).join(", ")}
+                                                </p>
+                                            }
+                                            {
+                                                crew && crew.filter((member) => member.job === "Writer").length > 0 &&
+                                                <p>
+                                                    Written
+                                                    by: {crew && crew.filter((member) => member.job === "Writer").map((member) => member.name).join(", ")}
+                                                </p>
+                                            }
+                                        </>
+                                    }
+                                    {movie.production_companies && movie.production_companies.length > 0 &&
+                                        <>
+                                            <h4>
+                                                Production Companies
+                                            </h4>
+                                            <div className={"list-group my-2"}>
+                                                {movie.production_companies.map((company) =>
+                                                    <Link className={"list-group-item"} key={company.id}
+                                                          to={`/companies/${company.id}`}>
+                                                        {company.logo_path &&
+                                                            <img src={`${IMAGE_URL_BASE}${company.logo_path}`}
+                                                                 alt={"logo"}
+                                                                 className={'company-logo me-3'}/>
+                                                        }
+                                                        {company.name}
+                                                    </Link>
+                                                )}
+                                            </div>
+                                        </>
                                     }
                                 </div>
-                            </div>
+                            }
+
 
                         </div>
                     </div>
@@ -108,7 +134,8 @@ const MovieDetails = () => {
             </div>
 
         </div>
-    );
+    )
+        ;
 
 }
 

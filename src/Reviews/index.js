@@ -40,11 +40,11 @@ const Reviews = ({editting}) => {
     useEffect(() => {
         const findReviewDetails = async (reviewId) => {
             const response = await reviewsClient.findReviewById(reviewId);
-
-            setReview(response)
             if (!response) {
                 navigate("/home");
             }
+
+            setReview(response)
         }
 
         if (validReviewId) {

@@ -4,8 +4,8 @@ const MoviesTiled = ({movies}) => {
 
     return (
         <div className="d-flex flex-row flex-wrap movie-grid-container">
-            {movies.map((movie) => (
-                <MovieStubSimple movie={movie}/>
+            {movies.map((movie, i) => (
+                <MovieStubSimple key={i} movie={movie}/>
             ))}
         </div>
     )

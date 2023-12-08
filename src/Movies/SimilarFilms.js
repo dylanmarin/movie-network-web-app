@@ -5,8 +5,8 @@ import MovieStubSimple from "../Shared/MovieStubSimple";
 
 const SimilarFilms = () => {
     const {movieId} = useParams();
-    const [movie, setMovie] = useState({});
     const [recommendations, setRecommendations] = useState([]);
+
 
     const fetchRecommendations = async (movieId) => {
         const recommendations = await client.getMovieRecommendations(movieId)
@@ -20,8 +20,13 @@ const SimilarFilms = () => {
     return (
         <div className={"recommendations-slider-container"}>
             <h3 className={"m-0"}>Similar Films:</h3>
-            <div className={"d-flex flex-row overflow-x-auto"}>
 
+            {
+                recommendations.length === 0 &&
+                <p>We actually aren't sure what films are like this one right now, sorry!</p>
+            }
+
+            <div className={"d-flex flex-row overflow-x-auto"}>
                 {
                     recommendations.filter((movie) => movie.poster_path !== null).map((recommendation) => {
                         return (
@@ -30,6 +35,7 @@ const SimilarFilms = () => {
                     })
                 }
             </div>
+
         </div>
     )
 }

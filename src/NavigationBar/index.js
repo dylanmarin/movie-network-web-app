@@ -62,7 +62,7 @@ const NavigationBar = () => {
                                 <span className="nav-link dropdown-toggle" href="#" role="button"
                                       data-bs-toggle="dropdown"
                                       aria-expanded="false">
-                                    <NavbarProfile/>
+                                    <NavbarProfile username={(loggedInUser && loggedInUser.username) || 'Profile'}/>
                                 </span>
 
                                     <ul className="dropdown-menu">

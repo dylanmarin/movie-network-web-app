@@ -27,11 +27,9 @@ function App() {
                 <HashRouter>
                     <div className={"h-100"}>
                         <NavigationBar/>
-                        <Routes>
-                            <Route path={"/signin"} element={<SignIn/>}/>
-                        </Routes>
                         <div className={"main-content"}>
                             <Routes>
+                                <Route path={"/signin"} element={<SignIn/>}/>
                                 <Route path="/" element={<Navigate to="/home"/>}/>
                                 <Route path="/home" element={<Home/>}/>
                                 <Route path="/users/:userId" element={<Users/>}/>
