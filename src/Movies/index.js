@@ -46,7 +46,7 @@ const MovieDetails = () => {
         <div className={"movie-details"}>
             <div className={"row"}>
                 <div className={"col"}>
-                    <div className={"row"}>
+                    <div className={"row mb-2"}>
                         <div className={"col-4 d-none d-lg-block poster-container"}>
 
                             {
