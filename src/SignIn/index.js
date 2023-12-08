@@ -48,19 +48,19 @@ const SignIn = () => {
                 <form onSubmit={submitForm}>
                     <h4>Sign In</h4>
 
-                    <input className={"form-control m-1"} placeholder={"Username"} value={username}
+                    <input className={"form-control m-0 mb-2"} placeholder={"Username"} value={username}
                            onChange={(e) => setUsername(e.target.value)}/>
 
-                    <input className={"form-control m-1"} placeholder={"Password"} type={"password"} value={password}
+                    <input className={"form-control m-0 mb-2"} placeholder={"Password"} type={"password"} value={password}
                            onChange={(e) => setPassword(e.target.value)}/>
 
-                    <button className={"btn cin-btn-secondary w-100 m-1"}>Sign In</button>
+                    <button className={"btn cin-btn-secondary w-100 mb-2 m-0"}>Sign In</button>
                 </form>
 
-                <div className={"row"}>
-                    <button className={"btn cin-btn-secondary m-1 col"} onClick={submitCreateAccount}>Create Account
+                <div className={"row gx-0"}>
+                    <button className={"btn cin-btn-secondary m-0 col mx-auto me-1"} onClick={submitCreateAccount}>Create Account
                     </button>
-                    <select className={"form-select m-1 col"} onChange={(e) => setRole(e.target.value)}>
+                    <select className={"form-select m-0 col mx-auto ms-1"} onChange={(e) => setRole(e.target.value)}>
                         <option>USER</option>
                         <option>MODERATOR</option>
                         <option>ADMIN</option>
