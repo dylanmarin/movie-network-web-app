@@ -11,7 +11,9 @@ const SimilarFilms = () => {
 
     const fetchRecommendations = async (movieId) => {
         const recommendations = await client.getMovieRecommendations(movieId)
-        setRecommendations(recommendations)
+
+
+        setRecommendations(recommendations.filter((movie) => movie.id !== 617932));
     }
 
     useEffect(() => {

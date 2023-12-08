@@ -87,7 +87,9 @@ const Reviews = ({editting}) => {
                                     </Link>
                                 </div>
                                 <div className={"fs-2 mb-2"}>
-                                    <StarRating rating={review.rating}/>
+                                    <span className={"d-inline-block"}>
+                                        <StarRating rating={review.rating}/>
+                                    </span>
                                     {
                                         editting &&
                                         <div>

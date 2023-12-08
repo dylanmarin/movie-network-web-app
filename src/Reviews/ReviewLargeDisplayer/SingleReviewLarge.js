@@ -16,11 +16,11 @@ const SingleReviewLarge = ({review}) => {
                                      className={"w-100 m-2"}/>
                             </div>
 
-                            <div className={"col"}>
+                            <div className={"col-md"}>
                                 <div className={"my-3"}>
                                     <h4 className={"movie-title m-0"}>{review.movieTitle}</h4>
-                                    <h5 className={"mb-1 d-inline"}>{review.user.username} rated it:     </h5>
-                                    <span className={"fs-3"}>
+                                    <h5 className={"mb-1 d-inline"}>{review.user.username} rated it: </h5>
+                                    <span className={"fs-3 d-inline-block"}>
                                         <StarRating rating={review.rating}/>
                                     </span>
                                     <p className={"review-text ms-2"}>{review.reviewText}</p>
