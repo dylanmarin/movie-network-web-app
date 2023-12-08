@@ -26,7 +26,7 @@ const DetailsSidebar = ({editting = false, newReview = false, handleSave = null,
         const fetchReview = async () => {
             const response = await reviewsClient.findReviewById(reviewId);
             if (response) {
-                const canEdit = loggedInUser._id === response.user._id || loggedInUser.role === "ADMIN" || loggedInUser.role === "MODERATOR" || newReview;
+                const canEdit = loggedInUser && (loggedInUser._id === response.user._id || loggedInUser.role === "ADMIN" || loggedInUser.role === "MODERATOR" || newReview);
 
                 if (editting && !canEdit) {
                     navigate(`/reviews/${reviewId}`);
