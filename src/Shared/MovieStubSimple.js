@@ -1,5 +1,7 @@
 import {Link} from "react-router-dom";
 import "./index.css"
+import noPoster from "../Images/No-Poster.jpg";
+
 
 const MovieStubSimple = ({movie}) => {
 
@@ -14,6 +16,11 @@ const MovieStubSimple = ({movie}) => {
                     {
                         poster_path &&
                         <img src={`${POSTER_URL}/${poster_path}`} alt={"poster"}
+                             className={"movie-recommendation-stub-image"}/>
+                    }
+                    {
+                        !poster_path &&
+                        <img src={noPoster} alt={"poster"}
                              className={"movie-recommendation-stub-image"}/>
                     }
                 </div>

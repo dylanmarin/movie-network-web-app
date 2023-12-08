@@ -1,11 +1,19 @@
 .movie-navbar nav {
-    background-color: var(--navbar-background-color);
+    background-color: var(--navbar-background-color) !important;
     height: var(--navbar-height);
     width: 100%;
     font-size: 1.2em;
     padding: 0 60px !important;
 }
 
+.navbar-bg-color {
+    background-color: var(--navbar-background-color) !important;
+
+}
+
+.logo-wordmark {
+    max-height: 35px;
+}
 .movie-navbar .col {
     height: 100%;
 }
@@ -44,9 +52,6 @@
 
 .navbar-brand {
     cursor: pointer;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-    border-radius: 10px;
-    padding: 16px 8px;
 }
 
 
@@ -76,6 +81,6 @@
 }
 
 .searchbar button {
-    border-radius: 0 150px 150px 0;
+    border-radius: 0 150px 150px 0 !important;
 }
 

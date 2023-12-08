@@ -10,7 +10,7 @@ const EditReviewButton = ({reviewId}) => {
     return (
         <button
             onClick={handleEditButton}
-            className={"btn btn-secondary sidebar-button"}>
+            className={"btn cin-btn-secondary sidebar-button"}>
             Edit Review
         </button>
     )

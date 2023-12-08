@@ -16,7 +16,7 @@ const AddReviewButton = ({movieId}) => {
 
     return (<button
         onClick={handleReviewButton}
-        className={"btn btn-secondary sidebar-button"}>
+        className={"btn cin-btn-secondary sidebar-button"}>
         {signedIn && "Add a Review"}
         {!signedIn && "Sign in to leave a Review!"}
     </button>)

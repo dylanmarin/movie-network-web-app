@@ -1,12 +1,39 @@
 :root {
     --navbar-height: 70px;
-    --navbar-background-color: #D9D9D9;
+    --navbar-background-color: #B0CDD7;
     --hyperlink-color: darkblue;
     --primary-text-color: #1D1F20;
+    --secondary-button-color: #276071;
     --light-grey: #F5F5F5;
     --dark-grey: #EDEDED;
     height: 100%;
 }
+
+
+h1 {
+    color: var(--secondary-button-color) !important;
+}
+
+h2 {
+    color: var(--secondary-button-color) !important;
+}
+
+h3 {
+    color: var(--secondary-button-color) !important;
+}
+
+h4 {
+    color: var(--secondary-button-color) !important;
+}
+
+h5 {
+    color: var(--secondary-button-color) !important;
+}
+
+h6 {
+    color: var(--secondary-button-color) !important;
+}
+
 
 .main-content {
     background-color: #FFFFFF;
@@ -32,4 +59,34 @@ a h4 {
 
 a h6 {
     text-decoration: none;
+}
+
+.cin-btn-primary {
+    border: solid 2px var(--secondary-button-color) !important;
+    border-radius: 100px !important;
+    height: auto !important;
+    margin: auto !important;
+    background-color: var(--light-grey) !important;
+    color: var(--secondary-button-color) !important;
+
+    padding: 4px 10px !important;
+}
+
+.cin-btn-primary:hover {
+    background-color: var(--dark-grey) !important;
+}
+
+
+.cin-btn-secondary {
+    background-color: var(--secondary-button-color) !important;
+    color: white !important;
+    margin: auto !important;
+    padding: 4px 10px !important;
+    border-radius: 100px !important;
+    height: auto !important;
+
+}
+
+.cin-btn-secondary:hover {
+    background-color: #0dcaf0 !important;
 }

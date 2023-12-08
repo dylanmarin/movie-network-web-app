@@ -149,9 +149,9 @@ const EditUsers = () => {
                     </div>
 
                     <div className={"col-auto mt-0"}>
-                        <button className={"btn btn-secondary edit-profile-button mx-1"} onClick={handleSave}>save
+                        <button className={"btn cin-btn-secondary edit-profile-button mx-1"} onClick={handleSave}>save
                         </button>
-                        <button className={"btn btn-secondary edit-profile-button mx-1"} onClick={handleCancel}>cancel
+                        <button className={"btn cin-btn-secondary edit-profile-button mx-1"} onClick={handleCancel}>cancel
                         </button>
                     </div>
                 </div>

@@ -118,13 +118,13 @@ const Users = () => {
                                     <>
                                         {
                                             (isOurAccount || isAdmin) &&
-                                            <button className={'btn btn-secondary edit-profile-button mx-1'}
+                                            <button className={'btn cin-btn-secondary mx-1'}
                                                     onClick={() => navigate(`/users/edit/${userId}`)}>
                                                 edit profile
                                             </button>
                                         }
                                         {isOurAccount &&
-                                            <button className={'btn btn-secondary edit-profile-button mx-1'}
+                                            <button className={'btn cin-btn-primary mx-1'}
                                                     onClick={handleSignOut}>
                                                 sign out
                                             </button>
@@ -136,13 +136,13 @@ const Users = () => {
                                         !isOurAccount &&
                                         <>
                                             {(following) &&
-                                                <button className={'btn btn-secondary edit-profile-button'}
+                                                <button className={'btn cin-btn-secondary edit-profile-button'}
                                                         onClick={handleUnfollow}>
                                                     unfollow
                                                 </button>
                                             }
                                             {(!following) &&
-                                                <button className={'btn btn-secondary edit-profile-button ms-2'}
+                                                <button className={'btn cin-btn-secondary edit-profile-button ms-2'}
                                                         onClick={handleFollow}>
                                                     follow
                                                 </button>
@@ -151,7 +151,7 @@ const Users = () => {
                                     )
                                     }
                                     {!currentUser &&
-                                        <button className={'btn btn-secondary edit-profile-button ms-2'}
+                                        <button className={'btn cin-btn-secondary edit-profile-button ms-2'}
                                                 disabled={true}>
                                             sign in to follow users
                                         </button>
@@ -163,7 +163,7 @@ const Users = () => {
                             <div className={"col-2"}>
                                 {
                                     isOurAccount &&
-                                    <button className={'btn btn-secondary edit-profile-button ms-2'}
+                                    <button className={'btn cin-btn-secondary ms-2'}
                                             onClick={() => {
                                                 navigate('/followers')
                                             }}>

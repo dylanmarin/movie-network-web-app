@@ -18,7 +18,7 @@ const PopularMovies = ({timeRange}) => {
 
     return (
         <>
-            <h4>Popular This {timeRange}</h4>
+            <h4>Popular this {timeRange}</h4>
             <HorizontalMovieScroller movies={popularMovies}/>
         </>
     )

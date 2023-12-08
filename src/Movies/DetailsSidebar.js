@@ -66,12 +66,12 @@ const DetailsSidebar = ({editting = false, newReview = false, handleSave = null,
                 <>
                     <button
                         onClick={handleSave}
-                        className={"btn btn-secondary sidebar-button"}>
+                        className={"btn cin-btn-secondary sidebar-button"}>
                         Save
                     </button>
                     <button
                         onClick={handleCancel}
-                        className={"btn btn-secondary sidebar-button"}>
+                        className={"btn cin-btn-secondary sidebar-button"}>
                         Cancel
                     </button>
                 </>

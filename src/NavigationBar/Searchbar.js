@@ -16,7 +16,7 @@ const Searchbar = () => {
             <input type={"text"} placeholder={"Search movies and users"}
                    className={"movie-navbar-item form-control mx-0"} value={searchString || ""}
                    onChange={(e) => setSearchString(e.target.value)}/>
-            <button className={"btn btn-secondary movie-navbar-item ms-1"}>Search</button>
+            <button className={"btn cin-btn-secondary  movie-navbar-item ms-1"}>Search</button>
         </form>
     )
 }

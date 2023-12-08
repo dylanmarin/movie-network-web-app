@@ -1,12 +1,12 @@
 import "./index.css";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Searchbar from "./Searchbar";
 import NavbarProfile from "./NavbarProfile";
-import {FaUserCircle} from "react-icons/fa";
 import * as usersClient from "../Users/client";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {logout, setLoggedInUser} from "../Users/usersReducer";
+import {logout} from "../Users/usersReducer";
+import wordmark from "../Images/Logo-Wordmark.png";
 
 const NavigationBar = () => {
     const navigate = useNavigate();
@@ -32,7 +32,11 @@ const NavigationBar = () => {
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
-                    <Link to={"/home"} className="navbar-brand">WebsiteName</Link>
+                    <Link to={"/home"} className="navbar-brand">
+                        <div className={""}>
+                            <img src={wordmark} alt={"logo"} className={"logo-wordmark"}/>
+                        </div>
+                    </Link>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

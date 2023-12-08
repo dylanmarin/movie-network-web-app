@@ -17,7 +17,7 @@ const DeleteReviewButton = ({reviewId}) => {
     return (
         <button
             onClick={handleDeleteReview}
-            className={"btn btn-secondary sidebar-button"}>
+            className={"btn cin-btn-secondary sidebar-button"}>
             Delete Review
         </button>
     )

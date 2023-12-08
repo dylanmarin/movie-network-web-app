@@ -54,11 +54,11 @@ const SignIn = () => {
                     <input className={"form-control m-1"} placeholder={"Password"} type={"password"} value={password}
                            onChange={(e) => setPassword(e.target.value)}/>
 
-                    <button className={"btn btn-secondary w-100 m-1"}>Sign In</button>
+                    <button className={"btn cin-btn-secondary w-100 m-1"}>Sign In</button>
                 </form>
 
                 <div className={"row"}>
-                    <button className={"btn btn-secondary m-1 col"} onClick={submitCreateAccount}>Create Account
+                    <button className={"btn cin-btn-secondary m-1 col"} onClick={submitCreateAccount}>Create Account
                     </button>
                     <select className={"form-select m-1 col"} onChange={(e) => setRole(e.target.value)}>
                         <option>USER</option>

@@ -19,7 +19,7 @@ const SearchBar = ({initialText}) => {
                 <input className={"form-control d-inline me-1 searchbar-input"} placeholder={"Search movies and users"}
                        value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
 
-                <button className={"btn btn-secondary"}>Search</button>
+                <button className={"btn cin-btn-secondary"}>Search</button>
             </form>
         </>
     )
