@@ -1,7 +1,7 @@
 import * as client from "./client";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setLoggedInUser} from "./usersReducer";
+import {logout, setLoggedInUser} from "./usersReducer";
 import {useLocation} from "react-router";
 
 function CurrentUser({children}) {
@@ -11,7 +11,13 @@ function CurrentUser({children}) {
 
     const fetchCurrentUser = async () => {
         const user = await client.account();
-        dispatch(setLoggedInUser(user));
+
+        if (!user) {
+            dispatch(logout());
+        } else {
+            dispatch(setLoggedInUser(user));
+        }
+
         setLoading(false);
     };
     useEffect(() => {
