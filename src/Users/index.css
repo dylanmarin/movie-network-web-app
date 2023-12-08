@@ -12,7 +12,7 @@
 .movie-stub {
     width: 160px;
     height: 100%;
-    margin: 0 10px;
+    margin: auto 10px 0;
     /*background-color: rebeccapurple;*/
     border-radius: 5px;
     /*display: flex;*/

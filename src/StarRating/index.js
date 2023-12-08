@@ -3,8 +3,8 @@ import "./index.css"
 
 
 const StarRating = ({rating}) => {
-    const starFilledColor = "#1D1F20";
-    const starEmptyColor = "#A7A7A7";
+    const starFilledColor = "#276071";
+    const starEmptyColor = "#D9D9D9";
 
     return (
         <>
