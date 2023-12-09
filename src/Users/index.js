@@ -191,7 +191,7 @@ const Users = () => {
                                 <div className={"reviewed-movies"}>
                                     {
                                         reviews.map((review, i) =>
-                                            <span key={i}>
+                                            <span className={"mt-auto"} key={i}>
                                                 <MovieReviewStub review={review}/>
                                             </span>
                                         )
