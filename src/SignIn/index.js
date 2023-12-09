@@ -15,6 +15,7 @@ const SignIn = () => {
 
     const submitForm = async () => {
         const response = await usersClient.signin({username, password})
+        console.log(response)
         if (response) {
             dispatch(setLoggedInUser(response));
             navigate(`/users/${response._id}`)

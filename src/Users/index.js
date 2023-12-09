@@ -76,7 +76,7 @@ const Users = () => {
     const handleSignOut = async () => {
         await usersClient.signout();
         dispatch(logout());
-        navigate(`/signin`);
+        navigate("/signin");
     }
 
     const handleFollow = async () => {
