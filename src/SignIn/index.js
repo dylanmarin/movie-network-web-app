@@ -14,10 +14,7 @@ const SignIn = () => {
     const dispatch = useDispatch();
 
     const submitForm = async () => {
-
-        console.log('making signin attempt')
         const response = await usersClient.signin({username, password})
-        console.log('signin attempt response', response)
         if (response) {
             dispatch(setLoggedInUser(response));
             navigate(`/users/${response._id}`)
