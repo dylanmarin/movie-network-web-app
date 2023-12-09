@@ -77,8 +77,9 @@ a h6 {
     margin: auto !important;
     background-color: var(--light-grey) !important;
     color: var(--secondary-button-color) !important;
-
     padding: 4px 10px !important;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .cin-btn-primary:hover {
@@ -93,6 +94,8 @@ a h6 {
     padding: 4px 10px !important;
     border-radius: 100px !important;
     height: auto !important;
+    white-space: nowrap;
+    display: inline-block;
 
 }
 
@@ -104,6 +107,8 @@ a h6 {
     padding: 4px 10px !important;
     border-radius: 100px !important;
     height: auto !important;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .cin-btn-danger:hover {

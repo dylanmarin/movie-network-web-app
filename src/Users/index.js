@@ -159,6 +159,11 @@ const Users = () => {
 
                                 </div>
 
+                                <div className={"row"}>
+                                    <p>{bio}</p>
+
+                                </div>
+
                             </div>
                             <div className={"col-2"}>
                                 {
@@ -171,13 +176,12 @@ const Users = () => {
                                     </button>
                                 }
                             </div>
-                            <div className={"col-4 d-none d-lg-block"}>
+                            <div className={"col-lg-4"}>
                                 <h2>Following:</h2>
                                 <UsersFollowing/>
                             </div>
                         </div>
 
-                        <p>{bio}</p>
 
                         <div>
                             <h4>Recently watched by {username}</h4>
