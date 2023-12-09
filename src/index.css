@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Proxima+Nova');
+@import url("https://use.typekit.net/ydb4lvr.css");
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: "proxima-nova", Serif;
+    font-weight: 300;
+    font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
