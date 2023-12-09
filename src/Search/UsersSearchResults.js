@@ -8,6 +8,7 @@ const UsersSearchResults = () => {
     const [users, setUsers] = useState([]);
     const {searchText} = useParams();
 
+
     useEffect(() => {
 
         const searchUsers = async (searchText) => {
@@ -16,8 +17,6 @@ const UsersSearchResults = () => {
         }
 
         searchUsers(searchText);
-
-
     }, [searchText]);
 
     return (
@@ -25,14 +24,14 @@ const UsersSearchResults = () => {
             <h4>Users</h4>
             <div className="d-flex flex-row flex-wrap justify-content-between">
                 {
-                    users &&
+                    users && users.length > 0 &&
                     users.map((user) => (
                         <UserSearchStub user={user}/>
                     ))
                 }
             </div>
             {
-                !users &&
+                !users || (users && users.length === 0) &&
                 <p>No users found</p>
             }
         </>

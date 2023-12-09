@@ -20,10 +20,17 @@ const MovieSearchResults = () => {
     return (
         <>
             {
-                searchResults &&
+                searchResults && searchResults.length > 0 &&
                 <>
                     <h4>Showing results for: {searchText}</h4>
                     <MoviesTiled movies={searchResults}/>
+                </>
+            }
+            {
+                !searchResults || (searchResults && searchResults.length === 0) &&
+                <>
+                    <h4>Movies:</h4>
+                <p>No movies found</p>
                 </>
             }
         </>
