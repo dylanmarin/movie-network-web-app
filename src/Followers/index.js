@@ -20,8 +20,8 @@ const Followers = () => {
         if (loggedInUser) {
             fetchFollowers()
         } else {
-            navigate("/signin")
             alert("You must be logged in to view your followers.")
+            navigate("/signin")
         }
     }, [loggedInUser]);
 
