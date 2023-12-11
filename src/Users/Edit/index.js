@@ -88,7 +88,7 @@ const EditUsers = () => {
 
         const status = await usersClient.updateUser(userId,
             {
-                ...loggedInUser,
+                ...originalUser,
                 ...user
             });
 
