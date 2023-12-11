@@ -21,14 +21,13 @@ const Followers = () => {
             fetchFollowers()
         } else {
             alert("You must be logged in to view your followers.")
-            navigate("/signin")
         }
     }, [loggedInUser]);
 
     return (
         <div className={""}>
             <h4>Your Followers:</h4>
-            {followersOfLoggedInUser.map((follower, i) =>
+            {loggedInUser && followersOfLoggedInUser.map((follower, i) =>
                 <Link key={i} to={`/users/${follower._id}`} className={"row mb-2"}>
                     <div className={"col-auto pe-0"}>
                         <FaUserCircle className={"fs-2"}/>
@@ -42,6 +41,14 @@ const Followers = () => {
                     </div>
                 </Link>
             )}
+            {
+                !loggedInUser &&
+                <button className={"btn cin-btn-primary"}
+                        onClick={() => navigate('/signin')}
+                >
+                    sign in to see your followers
+                </button>
+            }
         </div>
     )
 }
