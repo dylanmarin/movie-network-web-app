@@ -20,7 +20,7 @@ const Followers = () => {
         if (loggedInUser) {
             fetchFollowers()
         } else {
-            alert("You must be logged in to view your followers.")
+            navigate("/signin")
         }
     }, [loggedInUser]);
 
@@ -41,14 +41,6 @@ const Followers = () => {
                     </div>
                 </Link>
             )}
-            {
-                !loggedInUser &&
-                <button className={"btn cin-btn-primary"}
-                        onClick={() => navigate('/signin')}
-                >
-                    sign in to see your followers
-                </button>
-            }
         </div>
     )
 }
